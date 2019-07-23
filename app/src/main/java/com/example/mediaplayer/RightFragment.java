@@ -219,8 +219,10 @@ public class RightFragment extends Fragment {
             viewholder.lyric.setText(lyricList.get(position).get("lyric"));
 //            viewholder.lyric.setTextColor(#FFFFFF);
             if(position == 3){
+                //蓝色
                 viewholder.lyric.setTextColor(0xff01B8F9);
             }else {
+                //白色
                 viewholder.lyric.setTextColor(0xffffffff);
             }
 

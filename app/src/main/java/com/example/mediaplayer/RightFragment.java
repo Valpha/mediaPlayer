@@ -37,6 +37,8 @@ public class RightFragment extends Fragment {
                                                "黑云在降落", "我被它拖着走", "静静悄悄默默离开",
                                                "陷入了危险边缘 baby~"};
 
+    private int curselect = -1;
+    int flag = 0;
 
     public RightFragment() {
         // Required empty public constructor
@@ -63,7 +65,7 @@ public class RightFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_right,container,false);
+        View view = inflater.inflate(R.layout.fragment_right, container, false);
         mlvcurl = (ListView)view.findViewById(R.id.lv_curl);
         tv_count=(TextView)view.findViewById(R.id.tv_count);
         //朱远帆----歌词
@@ -82,27 +84,23 @@ public class RightFragment extends Fragment {
 
 
 
-        contactsList =new ArrayList<>();
+        contactsList = new ArrayList<>();
 //        HashMap<String, String>  map = new HashMap<>();
-        for(int i=0;i<30;i++)
-        {
+        for (int i = 0; i < 10; i++) {
             HashMap<String, String> map = new HashMap<>();
-            map.put("singer","周杰伦");
-            map.put("title","世界末日");
+            map.put("singer", "周杰伦");
+            map.put("title", "世界末日");
             contactsList.add(map);
         }
 
-       MyAdapter myadapter = new MyAdapter();
-        mlvcurl.setAdapter(myadapter);
+        final CurAdapter curadapter = new CurAdapter();
+        mlvcurl.setAdapter(curadapter);
+
         mlvcurl.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                MyAdapter.ViewHolder viewHolder = (MyAdapter.ViewHolder)view.getTag();
-
-                    i=i+1;
-                 tv_count.setText(i+"/10");
-
-                Toast.makeText(getActivity(), "click"+i, Toast.LENGTH_SHORT).show();
+//                调用位置
+                curadapter.changeSelect(i);
             }
         });
         return view;
@@ -114,8 +112,13 @@ public class RightFragment extends Fragment {
 
     }
 
-    private class MyAdapter extends BaseAdapter {
 
+
+    /**
+     * @author shizhuoxin
+     * CurAdapter
+     */
+    private class CurAdapter extends BaseAdapter {
         private ViewHolder viewHolder;
 
         @Override
@@ -136,23 +139,45 @@ public class RightFragment extends Fragment {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             viewHolder = null;
-            if(view==null) {
+            if (view == null) {
                 viewHolder = new ViewHolder();
-                view = View.inflate(getActivity(), R.layout.item_curl,null);
+                view = View.inflate(getActivity(), R.layout.item_curl, null);
                 viewHolder.singer = view.findViewById(R.id.tv_singer);
                 viewHolder.title = view.findViewById(R.id.tv_title);
                 viewHolder.status = view.findViewById(R.id.iv_status);
                 view.setTag(viewHolder);
-            }
-            else{
+            } else {
                 viewHolder = (ViewHolder) view.getTag();
             }
             viewHolder.title.setText(contactsList.get(i).get("title"));
-
             viewHolder.singer.setText(contactsList.get(i).get("singer"));
-            return  view;
+            if (curselect == i) {
+                viewHolder.title.setTextColor(0xff01B8F9);
+                viewHolder.singer.setTextColor(0xff01B8F9);
+                int position = i + 1;
+                tv_count.setText(position + "/10");
+            } else {
+                viewHolder.title.setTextColor(0xff000000);
+                viewHolder.singer.setTextColor(0xff000000);
+            }
+
+            return view;
         }
 
+        /**
+         * 判断位置是否一致
+         */
+        public void changeSelect(int i) {
+            if (i != curselect) {
+                curselect = i;
+                notifyDataSetChanged();
+            }
+
+        }
+
+        /**
+         * ViewHolder类
+         */
         private class ViewHolder {
             public ImageView status;
             public TextView title;

@@ -23,6 +23,7 @@
                 android:id="@+id/tv_listname"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:textSize="20sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:text="播放列表1"
@@ -33,6 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textSize="20sp"
                 android:text="1/10"
                 android:textColor="#999999" />
         </LinearLayout>

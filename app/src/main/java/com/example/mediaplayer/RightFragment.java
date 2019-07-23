@@ -30,6 +30,7 @@ public class RightFragment extends Fragment {
     private List<HashMap<String ,String>> contactsList;
     private TextView tv_count;
     int position =999;
+    private ListView lvGeci;
 
     public RightFragment() {
         // Required empty public constructor
@@ -59,6 +60,9 @@ public class RightFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_right,container,false);
         mlvcurl = (ListView)view.findViewById(R.id.lv_curl);
         tv_count=(TextView)view.findViewById(R.id.tv_count);
+        //朱远帆----歌词
+        lyricShow();
+
 
         contactsList =new ArrayList<>();
 //        HashMap<String, String>  map = new HashMap<>();
@@ -84,6 +88,12 @@ public class RightFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void lyricShow() {
+
+
+
     }
 
     private class MyAdapter extends BaseAdapter {

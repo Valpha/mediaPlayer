@@ -92,6 +92,11 @@ public class RightFragment extends Fragment {
 
     private void lyricShow() {
 
+        LyricAdapter lyricAdapter = new LyricAdapter();
+
+
+
+
 
 
     }
@@ -139,6 +144,28 @@ public class RightFragment extends Fragment {
             public ImageView status;
             public TextView title;
             public TextView singer;
+        }
+    }
+    //歌词colum的adapter
+    private class LyricAdapter extends BaseAdapter{
+        @Override
+        public int getCount() {
+            return 0;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return null;
         }
     }
 }

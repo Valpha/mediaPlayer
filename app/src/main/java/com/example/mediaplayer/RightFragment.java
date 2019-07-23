@@ -29,10 +29,13 @@ import java.util.List;
 public class RightFragment extends Fragment {
     private String tvContent;
     private ListView mlvcurl;
-    private List<HashMap<String ,String>> contactsList;
+//    private List<HashMap<String ,String>> contactsList;
+    private String title;
+    private String singer;
+
+    private List<Song> songs = new ArrayList<Song>();
     private List<HashMap<String, String>> lyricList;
     private TextView tv_count;
-    int position =999;
     private ListView lvGeci;
     private String[] objectView = new String[]{"爱像一阵风", "吹完它就走", "这样的节奏",
                                                "谁都无可奈何", "没有你以后","我灵魂失控",
@@ -61,7 +64,6 @@ public class RightFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -82,19 +84,19 @@ public class RightFragment extends Fragment {
         }
 
         LyricAdapter lyricadapter = new LyricAdapter();
-
         lvGeci.setAdapter(lyricadapter);
 
 
-
-        contactsList = new ArrayList<>();
-//        HashMap<String, String>  map = new HashMap<>();
-        for (int i = 0; i < 10; i++) {
-            HashMap<String, String> map = new HashMap<>();
-            map.put("singer", "周杰伦");
-            map.put("title", "世界末日");
-            contactsList.add(map);
-        }
+//
+//        contactsList = new ArrayList<>();
+////        HashMap<String, String>  map = new HashMap<>();
+//        for (int i = 0; i < 10; i++) {
+//            HashMap<String, String> map = new HashMap<>();
+//            map.put("singer", "周杰伦");
+//            map.put("title", "龙卷风");
+//            contactsList.add(map);
+//        }
+        scanDisk();
 
         final CurAdapter curadapter = new CurAdapter();
         mlvcurl.setAdapter(curadapter);
@@ -111,12 +113,43 @@ public class RightFragment extends Fragment {
 
     private void lyricShow() {
 
-
-
     }
 
+// 往song中加歌曲
+    private List<Song> scanDisk() {
+        for(int i=0;i<4;i++) {
+            Song song1 = new Song(title, singer);
+            song1.setSinger("周杰伦");
+            song1.setTitle("反方向的钟");
+            songs.add(song1);
+            Song song2 = new Song(title, singer);
+            song2.setSinger("周杰伦");
+            song2.setTitle("世界末日");
+            songs.add(song2);
+            Song song3 = new Song(title, singer);
+            song3.setSinger("周杰伦");
+            song3.setTitle("龙卷风");
+            songs.add(song3);
+            Song song4 = new Song(title, singer);
+            song4.setSinger("周杰伦");
+            song4.setTitle("爱在西元前");
+            songs.add(song4);
+            Song song5 = new Song(title, singer);
+            song5.setSinger("周杰伦");
+            song5.setTitle("星晴");
+            songs.add(song5);
+        }
 
+//        List<String> filepaths = new ArrayList<String>();
+//        for (int i =0 ;i<= filepaths.size();i++) {
+//            String title = Utils.getTitle(filepath);
+//            String singer = Utils.getTsinger(filepath);
+//            Song song = new Song(title, singer);
+//            songs.add(song);
+//        }
 
+        return songs;
+    }
     /**
      * @author shizhuoxin
      * CurAdapter
@@ -126,7 +159,7 @@ public class RightFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return contactsList.size();
+            return songs.size();
         }
 
         @Override
@@ -152,8 +185,8 @@ public class RightFragment extends Fragment {
             } else {
                 viewHolder = (ViewHolder) view.getTag();
             }
-            viewHolder.title.setText(contactsList.get(i).get("title"));
-            viewHolder.singer.setText(contactsList.get(i).get("singer"));
+            viewHolder.title.setText(songs.get(i).getTitle());
+            viewHolder.singer.setText(songs.get(i).getSinger());
             if (curselect == i) {
                 viewHolder.title.setTextColor(0xff01B8F9);
                 viewHolder.singer.setTextColor(0xff01B8F9);
@@ -195,7 +228,6 @@ public class RightFragment extends Fragment {
         public int getCount() {
             return lyricList.size();
         }
-
         @Override
         public Object getItem(int i) {
             return null;
@@ -227,11 +259,8 @@ public class RightFragment extends Fragment {
                 //白色
                 viewholder.lyric.setTextColor(0xffffffff);
             }
-
             return convertView;
-
         }
-
         private class ViewHolderLyric {
             public TextView lyric;
         }

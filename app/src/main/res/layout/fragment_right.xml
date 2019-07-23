@@ -7,10 +7,6 @@
     android:background="@android:color/holo_blue_bright"
     tools:context=".LeftFragment">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +15,59 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+
+                    android:id="@+id/iv_changpian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/音乐CD图标显示区"
+                    android:layout_marginLeft="373dp" />
+
+
+                <ImageView
+
+
+                    android:id="@+id/iv_xiaotu"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+
+                    android:layout_alignStart="@+id/iv_changpian"
+                    android:layout_alignLeft="@+id/iv_changpian"
+                    android:layout_alignTop="@+id/iv_changpian"
+                    android:layout_alignEnd="@+id/iv_changpian"
+                    android:layout_alignRight="@+id/iv_changpian"
+                    android:layout_alignBottom="@+id/iv_changpian"
+                    android:layout_marginStart="62dp"
+                    android:layout_marginLeft="62dp"
+                    android:layout_marginTop="59dp"
+                    android:layout_marginEnd="63dp"
+                    android:layout_marginRight="63dp"
+                    android:layout_marginBottom="56dp"
+                    android:src="@drawable/音乐图标显示区" />
+
+
+                <ImageView
+                    android:id="@+id/albumImage"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_centerVertical="true"
+
+                    android:layout_marginLeft="190dp"
+                    android:layout_marginTop="63dp"
+                    android:scaleType="center"
+                    android:src="@drawable/音乐图标显示区" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_above="@+id/bt_progress"

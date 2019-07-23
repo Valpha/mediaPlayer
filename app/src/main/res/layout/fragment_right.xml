@@ -239,7 +239,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search_fravorite" />
+                android:src="@drawable/search_fravorite"
+                android:layout_gravity="center_vertical"/>
 
             <ImageButton
                 android:id="@+id/modulBtn"
@@ -247,7 +248,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search_modul" />
+                android:src="@drawable/search_modul"
+                android:layout_gravity="center_vertical"/>
 
             <ImageButton
 
@@ -256,7 +258,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search_presslast" />
+                android:src="@drawable/search_presslast"
+                android:layout_gravity="center_vertical"/>
 
 
             <ImageButton
@@ -266,7 +269,9 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:scaleType="center"
-                android:src="@drawable/play_1" />
+                android:src="@drawable/play_1"
+                android:layout_gravity="center_vertical"
+                />
 
             <ImageButton
 
@@ -275,7 +280,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search_pressnext" />
+                android:src="@drawable/search_pressnext"
+                android:layout_gravity="center_vertical"/>
 
             <ImageButton
 
@@ -284,7 +290,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search_pressnullvoice" />
+                android:src="@drawable/search_pressnullvoice"
+                android:layout_gravity="center_vertical"/>
 
             <ImageButton
                 android:id="@+id/voice_Btn"
@@ -292,7 +299,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search_pressvoice" />
+                android:src="@drawable/search_pressvoice"
+                android:layout_gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout

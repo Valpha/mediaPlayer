@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <RadioGroup
+        android:id="@+id/rg_selectitem"
+        android:layout_width="115dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rb_playing"
+            style="@style/MusicSelectItemStyle"
+            android:drawableTop="@drawable/rb_isplaying_selector"
+            android:layout_marginTop="48dp"  />
+
+        <RadioButton
+            android:id="@+id/rb_webmusic"
+            style="@style/MusicSelectItemStyle"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/netorkmusicoff" />
+
+        <RadioButton
+            android:id="@+id/rb_localmusic"
+            style="@style/MusicSelectItemStyle"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/rb_localmusi_selector" />
+
+        <RadioButton
+            android:id="@+id/rb_connecttype"
+            style="@style/MusicSelectItemStyle"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/connectoff" />
+
+        <RadioButton
+            android:id="@+id/rb_playlist"
+            style="@style/MusicSelectItemStyle"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/rb_playlist_selector" />
+
+        <RadioButton
+            android:id="@+id/rb_myFavorite"
+            style="@style/MusicSelectItemStyle"
+            android:drawableTop="@drawable/rb_myfavorite_selector"
+            android:layout_marginBottom="28dp" />
+
+    </RadioGroup>
+
+</LinearLayout>

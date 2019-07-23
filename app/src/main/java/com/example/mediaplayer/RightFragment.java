@@ -1,6 +1,7 @@
 package com.example.mediaplayer;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -217,6 +218,11 @@ public class RightFragment extends Fragment {
 
             viewholder.lyric.setText(lyricList.get(position).get("lyric"));
 //            viewholder.lyric.setTextColor(#FFFFFF);
+            if(position == 3){
+                viewholder.lyric.setTextColor(0xff01B8F9);
+            }else {
+                viewholder.lyric.setTextColor(0xffffffff);
+            }
 
             return convertView;
 

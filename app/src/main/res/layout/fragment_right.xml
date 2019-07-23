@@ -145,13 +145,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/tv_songname"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_toRightOf="@+id/tv_songname"
                         android:text="周杰伦"
                         android:textColor="#999999"
                         android:textSize="18px" />
 
                     <LinearLayout
+                        android:layout_marginTop="30dp"
                         android:id="@+id/LL_zuoqu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -198,9 +199,10 @@
                         android:layout_height="250dp"
                         android:layout_below="@+id/LL_zuoqu"
                         android:layout_alignLeft="@+id/LL_zuoqu"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="14dp"
                         android:divider="@null"
+                        android:dividerHeight="5dp"
                         android:textColor="#FFFFFF">
 
                     </ListView>

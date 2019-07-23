@@ -7,8 +7,13 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/fg_curlist"
+        android:id="@+id/fg_leftlayout"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"></FrameLayout>
-
+        android:layout_height="match_parent">
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/fg_rightlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+    </FrameLayout>
 </LinearLayout>

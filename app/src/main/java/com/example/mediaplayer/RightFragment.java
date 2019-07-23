@@ -157,8 +157,8 @@ public class RightFragment extends Fragment {
                 int position = i + 1;
                 tv_count.setText(position + "/10");
             } else {
-                viewHolder.title.setTextColor(0xff000000);
-                viewHolder.singer.setTextColor(0xff000000);
+                viewHolder.title.setTextColor(0xffffffff);
+                viewHolder.singer.setTextColor(0xffffffff);
             }
 
             return view;

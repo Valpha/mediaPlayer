@@ -116,10 +116,87 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lyric"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_songname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="龙卷风"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="0dp"
+                        android:textSize="24px"
+                        android:textColor="#FFFFFF"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="周杰伦"
+                        android:layout_toRightOf="@+id/tv_songname"
+                        android:layout_alignBottom="@+id/tv_songname"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="18px"
+                        android:textColor="#999999"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/LL_zuoqu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_below="@+id/tv_songname"
+                        android:layout_alignLeft="@+id/tv_songname">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="作词："
+                            android:textSize="15px"
+                            android:textColor="#999999"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="徐若瑄"
+                            android:textSize="15px"
+                            android:textColor="#999999"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="  作曲："
+                            android:textSize="15px"
+                            android:textColor="#999999"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="周杰伦"
+                            android:textSize="15px"
+                            android:textColor="#999999"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                    <ListView
+                        android:divider="@null"
+                        android:id="@+id/lv_geci"
+                        android:textColor="#FFFFFF"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/LL_zuoqu"
+                        android:layout_alignLeft="@+id/LL_zuoqu">
+
+                    </ListView>
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
 
         </LinearLayout>

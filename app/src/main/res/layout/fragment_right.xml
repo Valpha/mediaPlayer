@@ -18,10 +18,21 @@
             android:layout_marginBottom="38dp"
             android:orientation="horizontal">
 
+            <LinearLayout
+                android:layout_weight="1.2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignStart="@+id/null">
+                android:layout_height="match_parent">
 
                 <ImageView
 
@@ -30,7 +41,7 @@
                     android:layout_height="140dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="350dp"
-                    android:src="@drawable/音乐CD图标显示区" />
+                    android:src="@drawable/changpian" />
 
 
                 <ImageView
@@ -52,19 +63,19 @@
                     android:layout_marginEnd="63dp"
                     android:layout_marginRight="63dp"
                     android:layout_marginBottom="56dp"
-                    android:src="@drawable/音乐图标显示区" />
+                    android:src="@drawable/changpianshow" />
 
 
                 <ImageView
                     android:id="@+id/albumImage"
-                    android:layout_width=""
+                    android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_centerVertical="true"
 
                     android:layout_marginLeft="270dp"
                     android:layout_marginTop="63dp"
                     android:scaleType="center"
-                    android:src="@drawable/音乐图标显示区" />
+                    android:src="@drawable/changpianshow" />
 
             </RelativeLayout>
 
@@ -134,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="46dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="13dp"
+            android:layout_marginBottom="1dp"
             android:orientation="horizontal">
 
             <TextView

@@ -8,8 +8,10 @@
     tools:context=".MainActivity">
 
     <RadioGroup
-        android:id="@+id/rg_selectitem"
+        android:id="@+id/rg_leftselect"
         android:layout_width="115dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="48dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:checkedButton="@id/rb_playing">
@@ -18,7 +20,8 @@
             android:id="@+id/rb_playing"
             style="@style/MusicSelectItemStyle"
             android:drawableTop="@drawable/rb_isplaying_selector"
-            android:layout_marginTop="48dp"  />
+            android:layout_height="0dp"
+            android:layout_weight="1"  />
 
         <RadioButton
             android:id="@+id/rb_webmusic"
@@ -52,7 +55,8 @@
             android:id="@+id/rb_myFavorite"
             style="@style/MusicSelectItemStyle"
             android:drawableTop="@drawable/rb_myfavorite_selector"
-            android:layout_marginBottom="28dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
     </RadioGroup>
 

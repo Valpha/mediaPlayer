@@ -27,6 +27,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class RightFragment extends Fragment {
+    private String tvContent;
     private ListView mlvcurl;
     private List<HashMap<String ,String>> contactsList;
     private List<HashMap<String, String>> lyricList;
@@ -40,6 +41,7 @@ public class RightFragment extends Fragment {
 
     private int curselect = -1;
     int flag = 0;
+
 
     public RightFragment() {
         // Required empty public constructor
@@ -234,4 +236,5 @@ public class RightFragment extends Fragment {
             public TextView lyric;
         }
     }
+
 }

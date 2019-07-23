@@ -7,16 +7,17 @@
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/fg_leftlayout"
-        android:layout_width="115dp"
-        android:layout_height="match_parent"
-        android:name="com.example.mediaplayer.LeftFragment">
-    </fragment>
-    <fragment
+    <FrameLayout
+    android:id="@+id/fg_leftlayout"
+    android:layout_width="115dp"
+    android:layout_height="match_parent">
+    </FrameLayout>
+
+>
+
+    <FrameLayout
         android:id="@+id/fg_rightlayout"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:name="com.example.mediaplayer.RightFragment">
-    </fragment>
+        android:layout_height="match_parent">
+    </FrameLayout>
 </LinearLayout>

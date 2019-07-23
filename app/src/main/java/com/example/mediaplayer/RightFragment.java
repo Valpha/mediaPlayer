@@ -28,9 +28,12 @@ import java.util.List;
 public class RightFragment extends Fragment {
     private ListView mlvcurl;
     private List<HashMap<String ,String>> contactsList;
+    private List<HashMap<String, String>> lyricList;
     private TextView tv_count;
     int position =999;
     private ListView lvGeci;
+    private String[] objectView = new String[]{"爱像一阵风", "吹完它就走", "这样的节奏", "谁都无可奈何", "没有你以后","我灵魂失控"};
+
 
     public RightFragment() {
         // Required empty public constructor
@@ -62,6 +65,18 @@ public class RightFragment extends Fragment {
         tv_count=(TextView)view.findViewById(R.id.tv_count);
         //朱远帆----歌词
         lyricShow();
+        lvGeci = (ListView) view.findViewById(R.id.lv_geci);
+        lyricList = new ArrayList<>();
+        for (int i=0; i<objectView.length; i++){
+            HashMap<String, String> map = new HashMap<>();
+            map.put("lyric", objectView[i]);
+            lyricList.add(map);
+        }
+
+        LyricAdapter lyricadapter = new LyricAdapter();
+
+        lvGeci.setAdapter(lyricadapter);
+
 
 
         contactsList =new ArrayList<>();
@@ -91,11 +106,6 @@ public class RightFragment extends Fragment {
     }
 
     private void lyricShow() {
-
-        LyricAdapter lyricAdapter = new LyricAdapter();
-
-
-
 
 
 
@@ -147,10 +157,10 @@ public class RightFragment extends Fragment {
         }
     }
     //歌词colum的adapter
-    private class LyricAdapter extends BaseAdapter{
+    private class LyricAdapter extends BaseAdapter {
         @Override
         public int getCount() {
-            return 0;
+            return lyricList.size();
         }
 
         @Override
@@ -165,7 +175,25 @@ public class RightFragment extends Fragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            return null;
+            ViewHolderLyric viewholder = null;
+            if(convertView == null){
+                convertView = View.inflate(getActivity(), R.layout.item_lyric, null);
+                viewholder = new ViewHolderLyric();
+                viewholder.lyric = convertView.findViewById(R.id.tv_lyric);
+                convertView.setTag(viewholder);
+            }else {
+                viewholder = (ViewHolderLyric)convertView.getTag();
+            }
+
+            viewholder.lyric.setText(lyricList.get(position).get("lyric"));
+//            viewholder.lyric.setTextColor(#FFFFFF);
+
+            return convertView;
+
+        }
+
+        private class ViewHolderLyric {
+            public TextView lyric;
         }
     }
 }

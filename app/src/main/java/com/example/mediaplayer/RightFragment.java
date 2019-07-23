@@ -220,17 +220,12 @@ public class RightFragment extends Fragment {
             public TextView singer;
         }
     }
-
-
-
-
     //歌词colum的adapter
     private class LyricAdapter extends BaseAdapter {
         @Override
         public int getCount() {
             return lyricList.size();
         }
-
         @Override
         public Object getItem(int i) {
             return null;
@@ -262,11 +257,8 @@ public class RightFragment extends Fragment {
                 //白色
                 viewholder.lyric.setTextColor(0xffffffff);
             }
-
             return convertView;
-
         }
-
         private class ViewHolderLyric {
             public TextView lyric;
         }

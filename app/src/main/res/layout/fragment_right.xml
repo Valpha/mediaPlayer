@@ -7,6 +7,46 @@
     android:background="@android:color/holo_blue_bright"
     tools:context=".LeftFragment">
 
+
+    <!--当前播放列表界面布局-->
+
+    <LinearLayout
+        android:background="@drawable/curbackg"
+        android:layout_width="220dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="210dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_listname"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="播放列表1"
+                android:textColor="#01B8F9" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="1/10"
+                android:textColor="#999999" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lv_curl"
+            android:layout_width="210dp"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tv_listname" />
+    </LinearLayout>
+
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -145,7 +185,7 @@
             android:layout_width="wrap_content"
             android:layout_height="46dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="1dp"
+            android:layout_marginBottom="13dp"
             android:orientation="horizontal">
 
             <TextView

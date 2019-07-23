@@ -11,17 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link CurlistFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * @author shizhuoxin
  */
 public class CurlistFragment extends Fragment {
     private ListView mlvcurl;
@@ -58,17 +58,28 @@ public class CurlistFragment extends Fragment {
 //        HashMap<String, String>  map = new HashMap<>();
         for(int i=0;i<30;i++)
         {
-            HashMap<String, String> map = new HashMap<>(5);
-            map.put("title","歌曲名"+i);
+            HashMap<String, String> map = new HashMap<>();
             map.put("singer","歌手"+i);
+            map.put("title","标题"+i);
             contactsList.add(map);
         }
+
         MyAdapter myadapter = new MyAdapter();
         mlvcurl.setAdapter(myadapter);
+        mlvcurl.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int position =i;
+                Toast.makeText(getActivity(), "click"+i, Toast.LENGTH_SHORT).show();
+            }
+        });
         return view;
     }
 
     private class MyAdapter extends BaseAdapter {
+
+        private ViewHolder viewHolder;
+
         @Override
         public int getCount() {
             return contactsList.size();
@@ -86,25 +97,27 @@ public class CurlistFragment extends Fragment {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            ViewHolder viewHolder = null;
+            viewHolder = null;
             if(view==null) {
 
                 viewHolder = new ViewHolder();
-                view = View.inflate(getActivity(), R.layout.item_curl, null);
-                viewHolder.title = view.findViewById(R.id.tv_title);
+                view = View.inflate(getActivity(), R.layout.item_curl,null);
                 viewHolder.singer = view.findViewById(R.id.tv_singer);
+                viewHolder.title = view.findViewById(R.id.tv_title);
+                viewHolder.status = view.findViewById(R.id.iv_status);
                 view.setTag(viewHolder);
             }
             else{
                 viewHolder = (ViewHolder) view.getTag();
             }
             viewHolder.title.setText(contactsList.get(i).get("title"));
-
             viewHolder.singer.setText(contactsList.get(i).get("singer"));
+
             return  view;
         }
 
         private class ViewHolder {
+            public ImageView status;
             public TextView title;
             public TextView singer;
         }

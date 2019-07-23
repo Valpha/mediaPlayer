@@ -40,12 +40,12 @@
         </LinearLayout>
 
         <ListView
+            android:layout_marginTop="20dp"
             android:id="@+id/lv_curl"
             android:layout_width="210dp"
             android:layout_height="match_parent"
             android:layout_below="@id/tv_listname" />
     </LinearLayout>
-
 
 
     <RelativeLayout

@@ -10,38 +10,33 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private FrameLayout mLeftLayout;
     private LinearLayout mRightLayout;
-
+//    private List<Song> songs = new ArrayList<Song>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        扫描磁盘获取song
+//        scanDisk();
         mLeftLayout =  findViewById(R.id.fg_leftlayout);
         mRightLayout =  findViewById(R.id.fg_rightlayout);
-
-//        //动态创建Fragment并且加载Fragment到容器中
-//        LeftFragment leftfragment = LeftFragment.newInstance();
-//        RightFragment rightfragment = RightFragment.newInstance();
-//        leftfragment.setOnChoiceChangedLisenter(new LeftFragment.OnChoiceChangedLisenter() {
-//            @Override
-//            public void onChoiceChanged(int index) {
-//                Toast.makeText(MainActivity.this, index+"", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//
-//        //开启事务，动态加载fragment到容器
-//        FragmentManager sfm = getSupportFragmentManager();
-//        FragmentTransaction ts = sfm.beginTransaction();
-//
-//        //把leftfragment加载到fg_leftlayout容器中去
-//        ts.replace(R.id.fg_leftlayout,leftfragment);
-//        //第三个参数代表framgent的TAG
-//
-//        ts.replace(R.id.fg_rightlayout, rightfragment, "rightfragment");
-//        //事务需要提交
-//        ts.commit();
-//
       }
+
+//    private List<Song> scanDisk() {
+
+//        List<String> filepaths = new ArrayList<String>();
+//        for (int i =0 ;i<= filepaths.size();i++) {
+//            String title = Utils.getTitle(filepath);
+//            String singer = Utils.getTsinger(filepath);
+//            Song song = new Song(title, singer);
+//            songs.add(song);
+//        }
+
+//        return songs;
+//    }
 }

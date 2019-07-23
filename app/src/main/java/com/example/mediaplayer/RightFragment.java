@@ -79,7 +79,6 @@ public class RightFragment extends Fragment {
         }
 
         LyricAdapter lyricadapter = new LyricAdapter();
-
         lvGeci.setAdapter(lyricadapter);
 
 
@@ -89,9 +88,10 @@ public class RightFragment extends Fragment {
         for (int i = 0; i < 10; i++) {
             HashMap<String, String> map = new HashMap<>();
             map.put("singer", "周杰伦");
-            map.put("title", "世界末日");
+            map.put("title", "龙卷风");
             contactsList.add(map);
         }
+
 
         final CurAdapter curadapter = new CurAdapter();
         mlvcurl.setAdapter(curadapter);
@@ -107,8 +107,6 @@ public class RightFragment extends Fragment {
     }
 
     private void lyricShow() {
-
-
 
     }
 

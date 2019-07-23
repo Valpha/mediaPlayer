@@ -11,7 +11,8 @@
         android:id="@+id/rg_selectitem"
         android:layout_width="115dp"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:checkedButton="@id/rb_playing">
 
         <RadioButton
             android:id="@+id/rb_playing"
@@ -24,7 +25,7 @@
             style="@style/MusicSelectItemStyle"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:drawableTop="@drawable/netorkmusicoff" />
+            android:drawableTop="@drawable/rb_netorkmusic_selector" />
 
         <RadioButton
             android:id="@+id/rb_localmusic"
@@ -38,7 +39,7 @@
             style="@style/MusicSelectItemStyle"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:drawableTop="@drawable/connectoff" />
+            android:drawableTop="@drawable/rb_connect_selector" />
 
         <RadioButton
             android:id="@+id/rb_playlist"

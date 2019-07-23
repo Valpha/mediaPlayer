@@ -154,9 +154,11 @@ public class RightFragment extends Fragment {
             if (curselect == i) {
                 viewHolder.title.setTextColor(0xff01B8F9);
                 viewHolder.singer.setTextColor(0xff01B8F9);
+                viewHolder.status.setVisibility(View.VISIBLE);
                 int position = i + 1;
                 tv_count.setText(position + "/10");
             } else {
+                viewHolder.status.setVisibility(View.INVISIBLE);
                 viewHolder.title.setTextColor(0xffffffff);
                 viewHolder.singer.setTextColor(0xffffffff);
             }

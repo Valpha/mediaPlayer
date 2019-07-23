@@ -32,7 +32,10 @@ public class RightFragment extends Fragment {
     private TextView tv_count;
     int position =999;
     private ListView lvGeci;
-    private String[] objectView = new String[]{"爱像一阵风", "吹完它就走", "这样的节奏", "谁都无可奈何", "没有你以后","我灵魂失控"};
+    private String[] objectView = new String[]{"爱像一阵风", "吹完它就走", "这样的节奏",
+                                               "谁都无可奈何", "没有你以后","我灵魂失控",
+                                               "黑云在降落", "我被它拖着走", "静静悄悄默默离开",
+                                               "陷入了危险边缘 baby~"};
 
 
     public RightFragment() {

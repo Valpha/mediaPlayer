@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="horizontal"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_bright"
     tools:context=".LeftFragment">
@@ -20,11 +21,94 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"/>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_above="@+id/bt_progress"
+            android:id="@+id/i_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        </FrameLayout>
+            <ImageButton
+
+                android:id="@+id/fravoriteBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_fravorite" />
+
+            <ImageButton
+
+                android:id="@+id/modulBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_modul" />
+
+            <ImageButton
+
+                android:id="@+id/last_Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_presslast" />
+
+
+            <ImageButton
+                android:id="@+id/palyingBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_press" />
+
+            <ImageButton
+
+                android:id="@+id/next_Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_pressnext" />
+
+            <ImageButton
+
+                android:id="@+id/voicenull_Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_pressnullvoice" />
+
+            <ImageButton
+                android:id="@+id/voice_Btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_pressvoice" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_alignParentBottom="true"
+            android:id="@+id/bt_progress"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_gravity="left"
+                android:text="0:00"
+                android:id="@+id/l_seekbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <SeekBar
+                android:id="@+id/v_seekbar"
+                android:layout_width="620px"
+                android:layout_height="wrap_content"
+                android:maxHeight="4.0dip"
+                android:minHeight="4.0dip"
+                android:paddingLeft="16.0dip"
+                android:paddingRight="16.0dip"
+                android:progressDrawable="@drawable/search_progress" />
+
+            <TextView
+                android:text="0:00"
+                android:layout_gravity="right"
+                android:id="@+id/r_seekbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

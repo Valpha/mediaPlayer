@@ -112,10 +112,21 @@ public class RightFragment extends Fragment {
 
 
         mbtPlaying.setOnClickListener(new View.OnClickListener() {
+            private boolean i =true;
+
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "播放", Toast.LENGTH_LONG).show();
-                mp.start();
+                if(i) {
+                    ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.pause));
+                    Toast.makeText(getActivity(), "正在播放", Toast.LENGTH_LONG).show();
+                    mp.start();
+                    i =false;
+                }else {
+                    ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.play_1));
+                    Toast.makeText(getActivity(), "已经暂停", Toast.LENGTH_LONG).show();
+                    mp.pause();
+                    i = true;
+                }
             }
         });
 
@@ -279,7 +290,7 @@ public class RightFragment extends Fragment {
             song1.setObjectView(tempobjectView);
             song1.setWriter("作词：方文山 ");
             song1.setZuoqu("作曲：周杰伦");
-            song1.setSsrc("周杰伦—反方向的神.mp3");
+            song1.setSsrc("薛之谦 - 慢半拍.mp3");
             songs.add(song1);
             Song song2 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
             song2.setSinger("周杰伦");
@@ -291,7 +302,7 @@ public class RightFragment extends Fragment {
             song2.setObjectView(tempobjectView2);
             song2.setWriter("作词：方文山 ");
             song2.setZuoqu("作曲：周杰伦");
-            song2.setSsrc("周杰伦—世界末日.mp3");
+            song2.setSsrc("小坂明子 - 海の見える街.mp3");
             songs.add(song2);
             Song song3 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
             song3.setSinger("周杰伦");

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".LeftFragment">
 
 
     <!--当前播放列表界面布局-->
 
     <LinearLayout
-        android:background="@drawable/curbackg"
         android:layout_width="220dp"
         android:layout_height="match_parent"
+        android:background="@drawable/curbackg"
         android:orientation="vertical">
 
         <LinearLayout
@@ -23,41 +25,42 @@
                 android:id="@+id/tv_listname"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="35dp"
                 android:text="播放列表1"
-                android:textColor="#01B8F9" />
+                android:textColor="#01B8F9"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/tv_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
-                android:textSize="15sp"
                 android:text="1/10"
-                android:textColor="#999999" />
+                android:textColor="#999999"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <ListView
-            android:layout_marginTop="20dp"
             android:id="@+id/lv_curl"
             android:layout_width="210dp"
             android:layout_height="match_parent"
-            android:layout_below="@id/tv_listname" />
+            android:layout_below="@id/tv_listname"
+            android:layout_marginTop="20dp" />
     </LinearLayout>
 
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="279dp"
-            android:layout_above="@+id/i_button"
-            android:layout_marginBottom="0dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:id="@+id/imageLayout"
@@ -76,9 +79,16 @@
                         android:id="@+id/iv_changpian"
                         android:layout_width="180dp"
                         android:layout_height="180dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="false"
-                        android:layout_marginLeft="160dp"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginStart="114dp"
+                        android:layout_marginLeft="114dp"
+                        android:layout_marginTop="65dp"
+                        android:layout_marginEnd="23dp"
+                        android:layout_marginRight="23dp"
                         android:src="@drawable/changpian" />
 
 
@@ -108,13 +118,19 @@
                         android:id="@+id/albumImage"
                         android:layout_width="190dp"
                         android:layout_height="190dp"
-                        android:layout_alignParentStart="true"
 
+                        android:layout_alignEnd="@+id/iv_changpian"
+                        android:layout_alignRight="@+id/iv_changpian"
+                        android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="false"
-                        android:layout_marginStart="75dp"
-                        android:layout_marginLeft="75dp"
-                        android:layout_marginTop="20dp"
+
+
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="31dp"
+                        android:layout_marginLeft="31dp"
+                        android:layout_marginTop="55dp"
+                        android:layout_marginEnd="76dp"
+                        android:layout_marginRight="76dp"
                         android:src="@drawable/tupian3" />
 
                 </RelativeLayout>
@@ -123,14 +139,14 @@
 
             <LinearLayout
                 android:id="@+id/lyric"
-                android:layout_width="wrap_content"
+                android:layout_width="170dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/tv_songname"
@@ -156,18 +172,17 @@
                         android:id="@+id/tv_cut"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/cutline"
                         android:layout_below="@+id/tv_songname"
                         android:layout_marginTop="15dp"
-                        />
+                        android:src="@drawable/cutline" />
 
                     <LinearLayout
-                        android:layout_marginTop="30dp"
                         android:id="@+id/LL_zuoqu"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_cut"
                         android:layout_alignLeft="@+id/tv_songname"
+                        android:layout_marginTop="30dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -228,79 +243,82 @@
             android:id="@+id/i_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/bt_progress"
-            android:layout_marginBottom="11dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.063"
+            tools:layout_editor_absoluteX="0dp">
 
             <ImageButton
 
                 android:id="@+id/fravoriteBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search_fravorite"
-                android:layout_gravity="center_vertical"/>
+                android:src="@drawable/search_fravorite" />
 
             <ImageButton
                 android:id="@+id/modulBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search_modul"
-                android:layout_gravity="center_vertical"/>
+                android:src="@drawable/search_modul" />
 
             <ImageButton
 
                 android:id="@+id/last_Btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search_presslast"
-                android:layout_gravity="center_vertical"/>
+                android:src="@drawable/search_presslast" />
 
 
             <ImageButton
                 android:id="@+id/palyingBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:scaleType="center"
-                android:src="@drawable/play_1"
-                android:layout_gravity="center_vertical"
-                />
+                android:src="@drawable/play_1" />
 
             <ImageButton
 
                 android:id="@+id/next_Btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search_pressnext"
-                android:layout_gravity="center_vertical"/>
+                android:src="@drawable/search_pressnext" />
 
             <ImageButton
 
                 android:id="@+id/voicenull_Btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search_pressnullvoice"
-                android:layout_gravity="center_vertical"/>
+                android:src="@drawable/search_pressnullvoice" />
 
             <ImageButton
                 android:id="@+id/voice_Btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search_pressvoice"
-                android:layout_gravity="center_vertical"/>
+                android:src="@drawable/search_pressvoice" />
         </LinearLayout>
 
         <LinearLayout
@@ -308,13 +326,12 @@
             android:id="@+id/bt_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="46dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/i_button"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="0dp">
 
             <TextView
                 android:id="@+id/l_seekbar"
@@ -342,5 +359,7 @@
                 android:layout_gravity="right"
                 android:text="0:00" />
         </LinearLayout>
-    </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

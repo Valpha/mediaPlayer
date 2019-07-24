@@ -38,7 +38,6 @@ import java.util.List;
 public class RightFragment extends Fragment {
     private String tvContent;
     private ListView mlvcurl;
-//    private List<HashMap<String ,String>> contactsList;
     private String title;
     private String singer;
 
@@ -143,7 +142,7 @@ public class RightFragment extends Fragment {
             public boolean onTouch(View view, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
                     Toast.makeText(getActivity(),"下一首歌",Toast.LENGTH_LONG).show();
-//                    ac.onChoiceChanged("下一首");
+
                     ((ImageButton)view).setImageDrawable(getResources().getDrawable(R.drawable.next2));
                 }else if (event.getAction() == MotionEvent.ACTION_UP) {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.next1));
@@ -171,7 +170,7 @@ public class RightFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
                     ((ImageButton)view).setImageDrawable(getResources().getDrawable(R.drawable.lastbt_two));
                     Toast.makeText(getActivity(),"上一首歌",Toast.LENGTH_LONG).show();
-//                    ac.onChoiceChanged("上一首");
+
                 }else if (event.getAction() == MotionEvent.ACTION_UP) {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.lastbt_com));
                 }
@@ -212,13 +211,7 @@ public class RightFragment extends Fragment {
             songs.add(song5);
         }
 
-//        List<String> filepaths = new ArrayList<String>();
-//        for (int i =0 ;i<= filepaths.size();i++) {
-//            String title = Utils.getTitle(filepath);
-//            String singer = Utils.getTsinger(filepath);
-//            Song song = new Song(title, singer);
-//            songs.add(song);
-//        }
+
 
         return songs;
     }

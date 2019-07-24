@@ -343,65 +343,116 @@ public class RightFragment extends Fragment {
         int k = 4;
         for (int i = 0; i < k; i++) {
             Song song1 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
-            song1.setSinger("周杰伦");
-            song1.setTitle("反方向的钟");
-            String[] tempobjectView = new String[]{"迷迷蒙蒙 你给的梦 ", "出现裂缝 隐隐作痛", "怎么沟通你都没空",
-                    "说我不懂 说了没用 ", "他的笑容 有何不同", "在你心中 我不再受宠 ",
-                    "我的天空 是雨是风 还是彩虹 ", "你在操纵", "恨自己真的没用情绪激动 ",
-                    "颗心到现在还在抽痛 "};
+            song1.setSinger("BAMBOO");
+            song1.setTitle("让他走");
+            String[] tempobjectView = new String[]{ "他还是走了对吗 ",
+                    "讽刺是一种默认你还爱着他 ",
+                    "溃烂的伤口总会结痂就别再去抓 ",
+                    "就像你初次见他不知所措心乱如麻 ",
+                    "此刻你也只想沉默听我陈述这段话 ",
+                    "你还是嗅着周围带熟悉味道的空气 ",
+                    "二氧化碳充满着彼此熟悉记忆 ",
+                    "他是从某年某月开始离开了你 ",
+                    "总有一天你会拼命却再也记不起 "
+                    , "浴室里的情侣牙刷还有毛巾, "
+                    , "他曾用你喜欢的方式打动你芳心 "
+                    , "某种液体在眼眶挑衅出出又进进 "
+                    , "它们像看客一般玩的尽情又尽兴 "
+                    , "他没有给过任何承诺离开也是情理 "
+                    , "但你还是责怪自己胡乱生了气,"
+                    , "把美好重复回忆把它用力的记 "};
 
             song1.setObjectView(tempobjectView);
-            song1.setWriter("作词：方文山 ");
-            song1.setZuoqu("作曲：周杰伦");
-            song1.setSsrc("薛之谦 - 慢半拍.mp3");
+            song1.setWriter("作词：Bamboo.Lee ");
+            song1.setZuoqu("作曲：Bamboo.Lee");
+            song1.setSsrc("BAMBOO - 让他走.mp3");
             songs.add(song1);
             Song song2 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
-            song2.setSinger("周杰伦");
-            song2.setTitle("世界末日");
-            String[] tempobjectView2 = new String[]{"想笑 来伪装掉下的眼泪 ", "点点头 承认自己会怕黑", "我只求 能借一点的时间来陪",
-                    "你却连同情都不给", "想哭 来试探自己麻痹了没 ", "全世界 好像只有我疲惫",
-                    "无所谓 反正难过就敷衍走一回 ", "但愿绝望和无奈远走高飞", "天灰灰 会不会  ",
-                    "让我忘了你是谁 "};
+            song2.setSinger("Jocelyn Pook Russian Red ");
+            song2.setTitle("Loving Strangers");
+            String[] tempobjectView2 = new String[]{"Ahah"
+                    , "爱上了陌生人"
+                    , "Loving strangers ×3"
+                    , "我口袋破了一个洞"
+                    , "Ah"
+                    , "钱都从那里消失了"
+                    , "I’ve got a hole, oh in my pocket"
+                    , "我想经常存在于你的心里"
+                    , "where all the money has gone"
+                    , "因为你的心很忙，我的心却很悠闲"
+                    , "I’ve got a whole lot of work to do with your heart"
+                    , "爱上陌生人"
+                    , "Cuz it’s so busy, mine’s not"
+                    , "爱上陌生人"
+                    , "Loving strangers ×3"};
             song2.setObjectView(tempobjectView2);
-            song2.setWriter("作词：方文山 ");
-            song2.setZuoqu("作曲：周杰伦");
-            song2.setSsrc("小坂明子 - 海の見える街.mp3");
+            song2.setWriter("作词：未知 ");
+            song2.setZuoqu("作曲：未知");
+            song2.setSsrc("Jocelyn Pook Russian Red - Loving Strangers.mp3");
             songs.add(song2);
             Song song3 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
-            song3.setSinger("周杰伦");
-            song3.setTitle("龙卷风");
-            String[] tempobjectView3 = new String[]{"爱像一阵风 吹完它就走 ", "这样的节奏 谁都无可奈何 ", "没有你以后 我灵魂失控 ",
-                    "黑云在降落 我被它拖着走", "静静悄悄默默离开 ", "陷入了危险边缘Baby",
-                    "我的世界已狂风暴雨 ", "Wu 爱情来的太快就像龙卷风 ", "离不开暴风圈来不及逃 ",
-                    "我不能再想我不能再想 "};
+            song3.setSinger("Nuo.");
+            song3.setTitle("天气之子-グランドエスケープ");
+            String[] tempobjectView3 = new String[]{"那个夏天的日子"
+                    , "在那片天空之上的我们.."
+                    , "将这个世界的形状...彻底的..."
+                    , "改变了"
+                    , "（重力陷入沉睡）"
+                    , "我...不想回去"
+                    , "（在千年一回的今日）"
+                    , "你是离家出走的少年吧"
+                    , "在他从梦境醒来之时）"
+                    , "少年 在找工作吧"
+                    , "（带回那曾失去的居所）"
+                    , "天空一直比大海不可思议"
+                    , "是个未知的世界"
+                    , "（“一二”地踢向大地）"};
             song3.setObjectView(tempobjectView3);
-            song3.setWriter("作词：徐若瑄 ");
-            song3.setZuoqu("作曲：周杰伦");
-            song3.setSsrc("周杰伦—龙卷风.mp3");
+            song3.setWriter("作词：RADWIMPS ");
+            song3.setZuoqu("作曲：RADWIMPS");
+            song3.setSsrc("Nuo. - 天气之子-グランドエスケープ（Cover：RADWIMPS）.mp3");
             songs.add(song3);
             Song song4 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
-            song4.setSinger("周杰伦");
-            song4.setTitle("爱在西元前");
-            String[] tempobjectView4 = new String[]{"古巴比伦王颁布了汉谟拉比法典", "刻在黑色的玄武岩 距今已经三千七百多年", "你在橱窗前 凝视碑文的字眼 ",
-                    "我却在旁静静欣赏你那张我深爱的脸 ", "祭司 神殿 征战 弓箭 是谁的从前 ", "喜欢在人潮中你只属于我的那画面 ",
-                    "经过苏美女神身边 我以女神之名许愿", "思念像底格里斯河般的漫延 ", "当古文明只剩下难解的语言  ",
-                    "传说就成了永垂不朽的诗篇 "};
+            song4.setSinger(" 黒木渚");
+            song4.setTitle("カルデラ");
+            String[] tempobjectView4 = new String[]{"不要看我挣扎的样子"
+                    , "カルデラ"
+                    , "即使不再年轻 即使失去氧气"
+                    , "黒木渚"
+                    , "也必定会烙上印记"
+                    , "最低だ」と思う日は 会いに来てよ"
+                    , "为什么 无论是患病的时候还是受侮辱的夜晚"
+                    , "私がもがくのを見ていなよ"
+                    , "顽固如我 都能有条不紊地活下去呢？"
+                    , "若さ失っても 酸素失っても"
+                    , "喷涌而出的总是 恰到时机"
+                    , "必ず目印でいるよ"
+                    , "黑色的事件 像是焦急等待一般"
+                    , "なんでどうして 病める時も 屈辱の夜も"};
             song4.setObjectView(tempobjectView4);
-            song4.setWriter("作词：方文山 ");
-            song4.setZuoqu("作曲：周杰伦");
-            song4.setSsrc("周杰伦—爱在西元前.mp3");
+            song4.setWriter("作词： 黒木渚 ");
+            song4.setZuoqu("作曲： 黒木渚");
+            song4.setSsrc("黒木渚 - カルデラ.mp3");
             songs.add(song4);
             Song song5 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
-            song5.setSinger("周杰伦");
-            song5.setTitle("星晴");
-            String[] tempobjectView5 = new String[]{"一步两步三步四步 望着天 手牵手 ", "一颗两颗三颗四颗 连成线看星星 ", "一步两步三步四步 望着天 手牵手 ",
-                    "一颗两颗三颗四颗 连成线看星星 ", "乘着风游荡在蓝天边 ", "一片云掉落在我面前",
-                    "捏成你的形状 ", "随风跟着我", "一口一口吃掉忧愁 ",
-                    "载着你彷佛载着阳光  "};
+            song5.setSinger("相对论");
+            song5.setTitle("最后的晚餐");
+            String[] tempobjectView5 = new String[]{ "灯光下酒杯在旋转 酒杯里有半只香烟 香烟里有欲望蔓延"
+                    , "分辨不出你我的脸 忘记客人谁来埋单 只是想在空中盘旋"
+                    , "我已带上你对我的期盼 再最后一次同你作欢"
+                    , "我已离开你双眼的视线 一切结束在这次晚餐 让你习惯"
+                    , "月光下杂乱的脚步 带领你我走向迷雾 时空交错误入云图"
+                    , "有个声音问我认不认输 我开始意识到这是个错误 想哭"
+                    , "我已带上你对我的期盼 再最后一次同你作欢"
+                    , "我已离开你双眼的视线 一切结束在这次晚餐 让你习惯"
+                    , "我已带上你对我的期盼 再最后一次同你作欢"
+                    , "我已离开你双眼的视线 一切结束在这次晚餐"
+                    , "带上你的期盼  最后一次"
+                    , "离开你的视线 让我结束"};
             song5.setObjectView(tempobjectView5);
-            song5.setWriter("作词：周杰伦 ");
-            song5.setZuoqu("作曲：周杰伦");
-            song5.setSsrc("周杰伦—星晴.mp3");
+            song5.setWriter("作词：邵庄 ");
+            song5.setZuoqu("作曲：相对论乐队");
+            song5.setSsrc("相对论 - 最后的晚餐.mp3");
             songs.add(song5);
         }
 

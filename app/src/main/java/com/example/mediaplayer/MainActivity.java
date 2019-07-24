@@ -16,8 +16,6 @@ import android.widget.Toast;
  * 继承于AppCompatActivity的新方法
  */
 public class MainActivity extends AppCompatActivity {
-    private FrameLayout mLeftLayout;
-    private FrameLayout mRightLayout;
     private RightFragment rightfragment;
     private LeftFragment leftfragment;
     private Right1Fragment rightfragment1;
@@ -30,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        mLeftLayout = findViewById(R.id.fg_leftlayout);
-//        mRightLayout = findViewById(R.id.fg_rightlayout);
         //动态创建Fragment并且加载Fragment到容器中
         leftfragment = LeftFragment.newInstance();
         rightfragment = RightFragment.newInstance();
@@ -45,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         leftfragment.setOnChoiceChangedLisenter(new LeftFragment.OnChoiceChangedLisenter() {
             @Override
             public void onChoiceChanged(int index) {
-                Toast.makeText(MainActivity.this, index + "改变选择了", Toast.LENGTH_LONG).show();
                 changeFragment(index);
             }
         });
@@ -54,18 +49,7 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(R.id.fg_rightlayout, rightfragment);
 
 
-/*        //开启事务，动态加载fragment到容器
-        FragmentManager sfm = getSupportFragmentManager();
-        FragmentTransaction ts = sfm.beginTransaction();
 
-        //把leftfragment加载到fg_leftlayout容器中去
-        ts.replace(R.id.fg_leftlayout, leftfragment);
-        //第三个参数代表framgent的TAG
-
-        ts.replace(R.id.fg_rightlayout, rightfragment, "rightfragment");
-
-        //事务需要提交
-        ts.commit();*/
     }
 
     private void loadFragment(int containerViewId, Fragment fragment) {

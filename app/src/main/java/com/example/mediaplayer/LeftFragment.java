@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
  * A simple {@link Fragment} subclass.
  * Use the {@link RightFragment#newInstance} factory method to
  * create an instance of this fragment.
+ *
  * @author ycn
  */
 public class LeftFragment extends Fragment {
@@ -48,8 +49,8 @@ public class LeftFragment extends Fragment {
     }
 
     /**
-     * @param inflater 打气筒
-     * @param container 容器
+     * @param inflater           打气筒
+     * @param container          容器
      * @param savedInstanceState 保存当前状态
      * @return
      */
@@ -63,37 +64,42 @@ public class LeftFragment extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 //通过checkedId可以判定是哪个RadioButton被选中了
-                String fragment2text = "";
                 switch (checkedId) {
+                    case R.id.rb_playing:
+
+                        if (mListner != null) {
+                            mListner.onChoiceChanged(0);
+                        }
+                        break;
                     case R.id.rb_webmusic:
-                        fragment2text = "网络音乐";
-                        if (mListner!=null) {
+
+                        if (mListner != null) {
                             mListner.onChoiceChanged(1);
                         }
                         break;
                     case R.id.rb_localmusic:
-                        if (mListner!=null) {
+                        if (mListner != null) {
                             mListner.onChoiceChanged(2);
                         }
-                        fragment2text = "本地音乐";
+//                        fragment2text = "本地音乐";
                         break;
                     case R.id.rb_connecttype:
-                        if (mListner!=null) {
+                        if (mListner != null) {
                             mListner.onChoiceChanged(3);
                         }
-                        fragment2text = "连接方式";
+//                        fragment2text = "连接方式";
                         break;
                     case R.id.rb_playlist:
-                        if (mListner!=null) {
+                        if (mListner != null) {
                             mListner.onChoiceChanged(4);
                         }
-                        fragment2text = "播放列表";
+//                        fragment2text = "播放列表";
                         break;
                     case R.id.rb_myFavorite:
-                        if (mListner!=null) {
+                        if (mListner != null) {
                             mListner.onChoiceChanged(5);
                         }
-                        fragment2text = "我的收藏";
+//                        fragment2text = "我的收藏";
                         break;
                     default:
                         break;
@@ -106,10 +112,11 @@ public class LeftFragment extends Fragment {
 
     /**
      * 设置监听状态变化的接口
+     *
      * @param listner 监听器对象
      */
-    public void  setOnChoiceChangedLisenter(OnChoiceChangedLisenter listner){
-        if(listner instanceof OnChoiceChangedLisenter){
+    public void setOnChoiceChangedLisenter(OnChoiceChangedLisenter listner) {
+        if (listner instanceof OnChoiceChangedLisenter) {
             mListner = listner;
         } else {
             throw new RuntimeException("提供的接口不标准");
@@ -120,12 +127,14 @@ public class LeftFragment extends Fragment {
     /**
      * 设置监听选择变化的接口
      */
-    public interface OnChoiceChangedLisenter{
+    public interface OnChoiceChangedLisenter {
         /**
          * 状态变化的重写方法
+         *
          * @param index 监听变化的序号
          */
         void onChoiceChanged(int index);
+
     }
 }
 

@@ -12,10 +12,12 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,8 +49,15 @@ public class RightFragment extends Fragment {
                                                "黑云在降落", "我被它拖着走", "静静悄悄默默离开",
                                                "陷入了危险边缘 baby~"};
 
+
+
+
     private int curselect = -1;
     int flag = 0;
+    private ImageButton bt_lastsong;
+    private ImageButton bt_modol;
+    private ImageButton bt_nextsong;
+    private ImageButton bt_playing;
 
 
     public RightFragment() {
@@ -79,6 +88,11 @@ public class RightFragment extends Fragment {
         mlvcurl = (ListView)view.findViewById(R.id.lv_curl);
         tv_count=(TextView)view.findViewById(R.id.tv_count);
         //朱远帆----歌词
+
+        bt_playing = (ImageButton)view.findViewById(R.id.palyingBtn);
+        bt_nextsong = (ImageButton)view.findViewById(R.id.next_Btn);
+        bt_modol = (ImageButton)view.findViewById(R.id.modulBtn);
+        bt_lastsong = (ImageButton)view.findViewById(R.id.last_Btn);
         lyricShow();
         lvGeci = (ListView) view.findViewById(R.id.lv_geci);
         lyricList = new ArrayList<>();
@@ -111,6 +125,55 @@ public class RightFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                调用位置
                 curadapter.changeSelect(i);
+            }
+        });
+
+        bt_playing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),"播放",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        bt_nextsong.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    Toast.makeText(getActivity(),"下一首歌",Toast.LENGTH_LONG).show();
+//                    ac.onChoiceChanged("下一首");
+                    ((ImageButton)view).setImageDrawable(getResources().getDrawable(R.drawable.next2));
+                }else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.next1));
+                }
+                return false;
+            }
+        });
+
+        bt_modol.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    ((ImageButton)view).setImageDrawable(getResources().getDrawable(R.drawable.shunxu1));
+                    Toast.makeText(getActivity(),"顺序播放",Toast.LENGTH_LONG).show();
+                }else  {
+                    ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.shunxu2));
+                }
+                return false;
+            }
+        });
+
+        bt_lastsong.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    ((ImageButton)view).setImageDrawable(getResources().getDrawable(R.drawable.lastbt_two));
+                    Toast.makeText(getActivity(),"上一首歌",Toast.LENGTH_LONG).show();
+//                    ac.onChoiceChanged("上一首");
+                }else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.lastbt_com));
+                }
+                return false;
             }
         });
         return view;

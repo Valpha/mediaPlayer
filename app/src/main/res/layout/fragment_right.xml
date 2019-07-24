@@ -154,7 +154,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="0dp"
-                        android:text="龙卷风"
                         android:textColor="#FFFFFF"
                         android:textSize="24px" />
 
@@ -165,7 +164,6 @@
                         android:layout_alignBottom="@+id/tv_songname"
                         android:layout_marginLeft="25dp"
                         android:layout_toRightOf="@+id/tv_songname"
-                        android:text="周杰伦"
                         android:textColor="#999999"
                         android:textSize="18px" />
 
@@ -187,34 +185,34 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_gdci"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="作词："
                             android:textColor="#999999"
                             android:textSize="15px" />
 
                         <TextView
+                            android:id="@+id/tv_writer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="徐若瑄"
                             android:textColor="#999999"
                             android:textSize="15px" />
 
                         <TextView
+                            android:id="@+id/tv_gdqu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="  作曲："
                             android:textColor="#999999"
                             android:textSize="15px" />
 
                         <TextView
+                            android:id="@+id/tv_zuoqu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="周杰伦"
                             android:textColor="#999999"
                             android:textSize="15px" />
                     </LinearLayout>

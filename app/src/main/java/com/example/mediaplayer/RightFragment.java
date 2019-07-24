@@ -16,6 +16,9 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
@@ -73,6 +76,8 @@ public class RightFragment extends Fragment {
     private ImageButton mbtFavorite;
     private SeekBar sb_seek;
     private String TAG = "RightFragment";
+    private View ivCd;
+    private Animation cdAmination;
 
     public RightFragment() {
         // Required empty public constructor
@@ -93,7 +98,10 @@ public class RightFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
+    public void initCDAnim(){
+        cdAmination = AnimationUtils.loadAnimation(getActivity(), R.anim.music_cd_anim);
+        cdAmination.setInterpolator(new LinearInterpolator());
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -103,13 +111,13 @@ public class RightFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_right, container, false);
 
         initView(view);
-
+        initCDAnim();
         sb_seek.setMax(100);
         sb_seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Log.d(TAG, progress+"");
-                if(mp.isPlaying()){
+                Log.d(TAG, progress + "");
+                if (mp.isPlaying()) {
                     //实现过拽播放
                     mp.seekTo(progress);
                 }
@@ -143,14 +151,20 @@ public class RightFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 curadapter.changeSelect(i);
                 changeView(i);
-            }});
+            }
+        });
+
 
         mbtPlaying.setOnClickListener(new View.OnClickListener() {
-            private boolean i =true;
+            private boolean i = true;
 
             @Override
             public void onClick(View view) {
-                if(i) {
+
+
+                if (i) {
+
+                    ivCd.startAnimation(cdAmination);
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.pause));
                     Toast.makeText(getActivity(), "正在播放", Toast.LENGTH_LONG).show();
                     sb_seek.setMax(mp.getDuration());
@@ -164,9 +178,10 @@ public class RightFragment extends Fragment {
 
                         }
                     };
-                    new Timer().schedule(task, 0 ,1000);
-                    i =false;
-                }else {
+                    new Timer().schedule(task, 0, 1000);
+                    i = false;
+                }else{
+                    ivCd.clearAnimation();
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.play_1));
                     Toast.makeText(getActivity(), "已经暂停", Toast.LENGTH_LONG).show();
                     mp.pause();
@@ -181,7 +196,7 @@ public class RightFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
                     mp.reset();
-                    int k=19;
+                    int k = 19;
                     if (songOrder >= k) {
                         songOrder = -1;
                     }
@@ -200,19 +215,19 @@ public class RightFragment extends Fragment {
         });
 
         mbtModol.setOnClickListener(new View.OnClickListener() {
-            private int i=0;
+            private int i = 0;
 
             @Override
             public void onClick(View view) {
-                if(i ==0) {
+                if (i == 0) {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.shuiji2));
                     Toast.makeText(getActivity(), "随机播放", Toast.LENGTH_LONG).show();
                     i = 1;
-                }else if (i ==1){
+                } else if (i == 1) {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.shunxu2));
                     Toast.makeText(getActivity(), "顺序播放", Toast.LENGTH_LONG).show();
                     i = 2;
-                }else {
+                } else {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.xunhuan2));
                     Toast.makeText(getActivity(), "单曲循环", Toast.LENGTH_LONG).show();
                     i = 0;
@@ -244,13 +259,14 @@ public class RightFragment extends Fragment {
 
         mbtFavorite.setOnClickListener(new View.OnClickListener() {
             private boolean i = true;
+
             @Override
             public void onClick(View view) {
-                if (i){
+                if (i) {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.like2));
                     Toast.makeText(getActivity(), "已收藏", Toast.LENGTH_LONG).show();
-                    i =false;
-                }else {
+                    i = false;
+                } else {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.like1));
                     Toast.makeText(getActivity(), "已取消收藏", Toast.LENGTH_LONG).show();
                     i = true;
@@ -264,7 +280,7 @@ public class RightFragment extends Fragment {
         mlvcurl = (ListView) view.findViewById(R.id.lv_curl);
         mtvCount = (TextView) view.findViewById(R.id.tv_count);
         mbtPlaying = (ImageButton) view.findViewById(R.id.palyingBtn);
-        mbtFavorite = (ImageButton)view.findViewById(R.id.fravoriteBtn);
+        mbtFavorite = (ImageButton) view.findViewById(R.id.fravoriteBtn);
         mbtNextSong = (ImageButton) view.findViewById(R.id.next_Btn);
         mbtModol = (ImageButton) view.findViewById(R.id.modulBtn);
         mbtLastSong = (ImageButton) view.findViewById(R.id.last_Btn);
@@ -273,7 +289,8 @@ public class RightFragment extends Fragment {
         lvGeci = (ListView) view.findViewById(R.id.lv_geci);
         mtvZuoQu = (TextView) view.findViewById(R.id.tv_zuoqu);
         mtvWriter = (TextView) view.findViewById(R.id.tv_writer);
-        sb_seek = (SeekBar)view.findViewById(R.id.v_seekbar);
+        sb_seek = (SeekBar) view.findViewById(R.id.v_seekbar);
+        ivCd = (ImageView) view.findViewById(R.id.iv_changpian);
 
     }
 
@@ -323,7 +340,7 @@ public class RightFragment extends Fragment {
      * @return 往song中加歌曲
      */
     private List<Song> scanDisk() {
-        int k=4;
+        int k = 4;
         for (int i = 0; i < k; i++) {
             Song song1 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
             song1.setSinger("周杰伦");
@@ -475,9 +492,9 @@ public class RightFragment extends Fragment {
     }
 
 
-   /**
-    * 歌词的adapter
-    */
+    /**
+     * 歌词的adapter
+     */
     private class LyricAdapter extends BaseAdapter {
         @Override
         public int getCount() {

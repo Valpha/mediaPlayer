@@ -35,6 +35,8 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  * Use the {@link RightFragment#newInstance} factory method to
  * create an instance of this fragment.
+ *
+ * @author ycn
  */
 
 
@@ -240,7 +242,9 @@ public class RightFragment extends Fragment {
 
     }
 
-// 往song中加歌曲
+    /**
+     * @return 往song中加歌曲
+     */
     private List<Song> scanDisk() {
         for(int i=0;i<4;i++) {
             Song song1 = new Song(title, singer,objectview,writer,zuoqu,ssrc);

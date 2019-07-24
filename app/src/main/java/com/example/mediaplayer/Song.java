@@ -1,5 +1,8 @@
 package com.example.mediaplayer;
 
+/**
+ * @Song
+ */
 public class Song {
     private String title;
     private  String singer ;

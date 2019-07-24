@@ -51,6 +51,8 @@ public class RightFragment extends Fragment {
     private ImageButton bt_modol;
     private ImageButton bt_nextsong;
     private ImageButton bt_playing;
+    private TextView tv_songname;
+    private TextView tv_ssinger;
 
     public RightFragment() {
         // Required empty public constructor
@@ -87,6 +89,8 @@ public class RightFragment extends Fragment {
         bt_nextsong = (ImageButton)view.findViewById(R.id.next_Btn);
         bt_modol = (ImageButton)view.findViewById(R.id.modulBtn);
         bt_lastsong = (ImageButton)view.findViewById(R.id.last_Btn);
+        tv_songname=(TextView)view.findViewById(R.id.tv_songname);
+        tv_ssinger=(TextView)view.findViewById(R.id.tv_ssinger);
         lvGeci = (ListView) view.findViewById(R.id.lv_geci);
         lyricList = new ArrayList<>();
 
@@ -103,6 +107,8 @@ public class RightFragment extends Fragment {
                 lyricShow();
                 lvGeci.setAdapter(lyricadapter);
                 lyricadapter.notifyDataSetChanged();
+                tv_songname.setText(songs.get(i).getTitle());
+                tv_ssinger.setText(songs.get(i).getSinger());
 
             }
         });
@@ -174,9 +180,7 @@ public class RightFragment extends Fragment {
             HashMap<String, String> map = new HashMap<>();
             map.put("lyric", songs.get(pos).getObjectView()[t]);
             lyricList.add(map);
-            Log.d("hhhhhh", "lyricShow: "+songs.get(pos).getObjectView()[t]);
         }
-
         Toast.makeText(getActivity(), "ddd"+pos, Toast.LENGTH_SHORT).show();
 
     }

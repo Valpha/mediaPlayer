@@ -21,6 +21,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -68,6 +71,8 @@ public class RightFragment extends Fragment {
     private TextView mtvZuoQu;
     private TextView mtvWriter;
     private ImageButton mbtFavorite;
+    private SeekBar sb_seek;
+    private String TAG = "RightFragment";
 
     public RightFragment() {
         // Required empty public constructor
@@ -98,6 +103,36 @@ public class RightFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_right, container, false);
 
         initView(view);
+
+        sb_seek.setMax(100);
+        sb_seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                Log.d(TAG, progress+"");
+                if(mp.isPlaying()){
+                    //实现过拽播放
+                    mp.seekTo(progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                //音乐播放结束
+                Log.d(TAG, "onCompletion---");
+            }
+        });
+
         lyricList = new ArrayList<>();
         scanDisk();
         musicStatusChange(songs.get(0).getSsrc());
@@ -110,12 +145,33 @@ public class RightFragment extends Fragment {
                 changeView(i);
             }});
 
-
         mbtPlaying.setOnClickListener(new View.OnClickListener() {
+            private boolean i =true;
+
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "播放", Toast.LENGTH_LONG).show();
-                mp.start();
+                if(i) {
+                    ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.pause));
+                    Toast.makeText(getActivity(), "正在播放", Toast.LENGTH_LONG).show();
+                    sb_seek.setMax(mp.getDuration());
+                    mp.start();
+
+                    TimerTask task = new TimerTask() {
+                        @Override
+                        public void run() {
+                            //1秒钟调用一次
+                            sb_seek.setProgress(mp.getCurrentPosition());
+
+                        }
+                    };
+                    new Timer().schedule(task, 0 ,1000);
+                    i =false;
+                }else {
+                    ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.play_1));
+                    Toast.makeText(getActivity(), "已经暂停", Toast.LENGTH_LONG).show();
+                    mp.pause();
+                    i = true;
+                }
             }
         });
 
@@ -217,6 +273,7 @@ public class RightFragment extends Fragment {
         lvGeci = (ListView) view.findViewById(R.id.lv_geci);
         mtvZuoQu = (TextView) view.findViewById(R.id.tv_zuoqu);
         mtvWriter = (TextView) view.findViewById(R.id.tv_writer);
+        sb_seek = (SeekBar)view.findViewById(R.id.v_seekbar);
 
     }
 
@@ -279,7 +336,7 @@ public class RightFragment extends Fragment {
             song1.setObjectView(tempobjectView);
             song1.setWriter("作词：方文山 ");
             song1.setZuoqu("作曲：周杰伦");
-            song1.setSsrc("周杰伦—反方向的神.mp3");
+            song1.setSsrc("薛之谦 - 慢半拍.mp3");
             songs.add(song1);
             Song song2 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
             song2.setSinger("周杰伦");
@@ -291,7 +348,7 @@ public class RightFragment extends Fragment {
             song2.setObjectView(tempobjectView2);
             song2.setWriter("作词：方文山 ");
             song2.setZuoqu("作曲：周杰伦");
-            song2.setSsrc("周杰伦—世界末日.mp3");
+            song2.setSsrc("小坂明子 - 海の見える街.mp3");
             songs.add(song2);
             Song song3 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
             song3.setSinger("周杰伦");

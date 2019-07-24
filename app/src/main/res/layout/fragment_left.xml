@@ -3,60 +3,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <RadioGroup
         android:id="@+id/rg_leftselect"
-        android:layout_width="115dp"
+        android:layout_width="140dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="48dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:checkedButton="@id/rb_playing">
+        android:checkedButton="@id/rb_playing"
+        android:orientation="vertical">
 
         <RadioButton
             android:id="@+id/rb_playing"
             style="@style/MusicSelectItemStyle"
-            android:drawableTop="@drawable/rb_isplaying_selector"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1"  />
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/rb_isplaying_selector" />
 
         <RadioButton
             android:id="@+id/rb_webmusic"
             style="@style/MusicSelectItemStyle"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableTop="@drawable/rb_netorkmusic_selector" />
+            android:drawableRight="@drawable/rb_netorkmusic_selector" />
 
         <RadioButton
             android:id="@+id/rb_localmusic"
             style="@style/MusicSelectItemStyle"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableTop="@drawable/rb_localmusi_selector" />
+            android:drawableRight="@drawable/rb_localmusi_selector" />
 
         <RadioButton
             android:id="@+id/rb_connecttype"
             style="@style/MusicSelectItemStyle"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableTop="@drawable/rb_connect_selector" />
+            android:drawableRight="@drawable/rb_connect_selector" />
 
         <RadioButton
             android:id="@+id/rb_playlist"
             style="@style/MusicSelectItemStyle"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableTop="@drawable/rb_playlist_selector" />
+            android:drawableRight="@drawable/rb_playlist_selector" />
 
         <RadioButton
             android:id="@+id/rb_myFavorite"
             style="@style/MusicSelectItemStyle"
-            android:drawableTop="@drawable/rb_myfavorite_selector"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/rb_myfavorite_selector" />
 
     </RadioGroup>
 

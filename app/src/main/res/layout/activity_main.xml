@@ -8,52 +8,16 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-    android:id="@+id/fg_leftlayout"
-    android:layout_width="113dp"
-    android:layout_height="match_parent">
-    </FrameLayout>
+        android:id="@+id/fg_leftlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"></FrameLayout>
 
->
 
     <FrameLayout
         android:id="@+id/fg_rightlayout"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-    </FrameLayout>
+        android:layout_height="match_parent"></FrameLayout>
 
-    <FrameLayout
-    android:id="@+id/fg_1rightlayout"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent">
 
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/fg_2rightlayout"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/fg_3rightlayout"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/fg_4rightlayout"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/fg_5rightlayout"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
 
 </LinearLayout>

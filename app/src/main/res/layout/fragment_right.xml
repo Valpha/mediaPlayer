@@ -47,29 +47,31 @@
             android:layout_height="match_parent"
             android:layout_below="@id/tv_listname"
             android:layout_marginTop="20dp"
-            android:paddingLeft="10dp"/>
+            android:paddingLeft="10dp" />
     </LinearLayout>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="220dp">
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="688dp"
-            android:layout_height="456dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/imageLayout"
-                android:layout_width="332dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
@@ -145,7 +147,7 @@
 
             <LinearLayout
                 android:id="@+id/lyric"
-                android:layout_width="170dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
@@ -162,14 +164,17 @@
                         android:layout_marginLeft="0dp"
                         android:layout_marginTop="0dp"
                         android:textColor="#FFFFFF"
-                        android:textSize="24px" />
+                        android:textSize="24px"
+                        tools:text="sss" />
 
                     <TextView
                         android:id="@+id/tv_ssinger"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/tv_songname"
+                        android:layout_marginStart="25dp"
                         android:layout_marginLeft="25dp"
+                        android:layout_toEndOf="@+id/tv_songname"
                         android:layout_toRightOf="@+id/tv_songname"
                         android:textColor="#999999"
                         android:textSize="18px" />
@@ -251,14 +256,16 @@
 
         <LinearLayout
             android:id="@+id/buttonandseekbar"
-            android:layout_width="692dp"
-            android:layout_height="118dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.917"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="-3dp">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="3.2"
+            android:orientation="vertical">
 
             <LinearLayout
 
@@ -349,6 +356,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
+                android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/i_button"
@@ -385,5 +393,5 @@
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </LinearLayout>

@@ -53,21 +53,20 @@ public class RightFragment extends Fragment {
     private int curselect = -1;
     int flag = 0;
     private String[] objectview=null;
+    private String ssrc;
     private ImageButton bt_lastsong;
     private ImageButton bt_modol;
     private ImageButton bt_nextsong;
     private ImageButton bt_playing;
     private MediaPlayer mp;
-    private String[] songsrc = new String[]{"房东的猫 - 斑马斑马 (翻唱).mp3", "Delacey - Dream It Possible.mp3",
-                                            "Angie Miller - This Is the Life.mp3", "Edeema - I'm Yours (Edeema Remix).mp3"};
+//    private String[] songsrc = new String[]{"房东的猫 - 斑马斑马 (翻唱).mp3", "Delacey - Dream It Possible.mp3",
+//                                            "Angie Miller - This Is the Life.mp3", "Edeema - I'm Yours (Edeema Remix).mp3"};
     private int songOrder;
 
     private TextView tv_songname;
     private TextView tv_ssinger;
     private TextView tv_zuoqu;
     private TextView tv_writer;
-    private TextView tv_gdci;
-    private TextView tv_gdqu;
 
     public RightFragment() {
         // Required empty public constructor
@@ -95,7 +94,7 @@ public class RightFragment extends Fragment {
         songOrder = 0;
         //音乐播放器
         mp = new MediaPlayer();
-        musicStatusChange(songsrc[0]);
+
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_right, container, false);
@@ -111,11 +110,9 @@ public class RightFragment extends Fragment {
         lvGeci = (ListView) view.findViewById(R.id.lv_geci);
         tv_zuoqu= (TextView)view.findViewById(R.id.tv_zuoqu);
         tv_writer=(TextView)view.findViewById(R.id.tv_writer);
-        tv_gdci = (TextView)view.findViewById(R.id.tv_gdci);
-        tv_gdqu=(TextView)view.findViewById(R.id.tv_gdqu);
         lyricList = new ArrayList<>();
         scanDisk();
-
+        musicStatusChange(songs.get(0).getSsrc());
         final CurAdapter curadapter = new CurAdapter();
         mlvcurl.setAdapter(curadapter);
 
@@ -124,17 +121,9 @@ public class RightFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                调用位置
                 curadapter.changeSelect(i);
-//                updateLyric();
-                lyricShow();
-                lvGeci.setAdapter(lyricadapter);
-                lyricadapter.notifyDataSetChanged();
-                tv_songname.setText(songs.get(i).getTitle());
-                tv_ssinger.setText(songs.get(i).getSinger());
-                tv_writer.setText(songs.get(i).getWriter());
-                tv_zuoqu.setText(songs.get(i).getZuoqu());
-                tv_gdci.setText("作词：");
-                tv_gdqu.setText("作曲：");
-            }
+//                歌词同步的封装
+                 changeView(i);
+        }
         });
 
 
@@ -153,14 +142,18 @@ public class RightFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
 
                     mp.reset();
-                    if(songOrder >= songsrc.length - 1){
+                    if(songOrder >=19){
                         songOrder = -1;
                     }
-                    musicStatusChange(songsrc[++songOrder]);
+                    musicStatusChange(songs.get(++songOrder).getSsrc());
 
                     mp.start();
                     Toast.makeText(getActivity(),"下一首歌"+songOrder,Toast.LENGTH_LONG).show();
                     ((ImageButton)view).setImageDrawable(getResources().getDrawable(R.drawable.next2));
+
+                    curadapter.changeSelect(songOrder);
+//                  歌词同步的封装
+                    changeView(songOrder);
                 }else if (event.getAction() == MotionEvent.ACTION_UP) {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.next1));
                 }
@@ -188,12 +181,15 @@ public class RightFragment extends Fragment {
                     ((ImageButton)view).setImageDrawable(getResources().getDrawable(R.drawable.lastbt_two));
 
                     mp.reset();
-                    if (songOrder <=0){
-                        songOrder = songsrc.length;
+                    if (songOrder <1){
+                        songOrder = 20;
                     }
-                    musicStatusChange(songsrc[--songOrder]);
+                    musicStatusChange(songs.get(--songOrder).getSsrc());
                     mp.start();
                     Toast.makeText(getActivity(),"上一首歌"+songOrder,Toast.LENGTH_LONG).show();
+                    curadapter.changeSelect(songOrder);
+//                  歌词同步的封装
+                    changeView(songOrder);
                 }else if (event.getAction() == MotionEvent.ACTION_UP) {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.lastbt_com));
                 }
@@ -201,6 +197,17 @@ public class RightFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void changeView(int i) {
+        //                updateLyric();
+        lyricShow();
+        lvGeci.setAdapter(lyricadapter);
+        lyricadapter.notifyDataSetChanged();
+        tv_songname.setText(songs.get(i).getTitle());
+        tv_ssinger.setText(songs.get(i).getSinger());
+        tv_writer.setText(songs.get(i).getWriter());
+        tv_zuoqu.setText(songs.get(i).getZuoqu());
     }
 
     private void musicStatusChange(String songname) {
@@ -230,14 +237,13 @@ public class RightFragment extends Fragment {
             map.put("lyric", songs.get(pos).getObjectView()[t]);
             lyricList.add(map);
         }
-        Toast.makeText(getActivity(), "ddd"+pos, Toast.LENGTH_SHORT).show();
 
     }
 
 // 往song中加歌曲
     private List<Song> scanDisk() {
         for(int i=0;i<4;i++) {
-            Song song1 = new Song(title, singer,objectview,writer,zuoqu);
+            Song song1 = new Song(title, singer,objectview,writer,zuoqu,ssrc);
             song1.setSinger("周杰伦");
             song1.setTitle("反方向的钟");
             String[] tempobjectView = new String[]{"迷迷蒙蒙 你给的梦 ", "出现裂缝 隐隐作痛", "怎么沟通你都没空",
@@ -246,10 +252,11 @@ public class RightFragment extends Fragment {
                     "颗心到现在还在抽痛 "};
 
             song1.setObjectView(tempobjectView);
-            song1.setWriter("方文山");
-            song1.setZuoqu("周杰伦");
+            song1.setWriter("作词：方文山 ");
+            song1.setZuoqu("作曲：周杰伦");
+            song1.setSsrc("周杰伦—反方向的神.mp3");
             songs.add(song1);
-            Song song2 = new Song(title, singer,objectview,writer,zuoqu);
+            Song song2 = new Song(title, singer,objectview,writer,zuoqu,ssrc);
             song2.setSinger("周杰伦");
             song2.setTitle("世界末日");
             String[] tempobjectView2 = new String[]{"想笑 来伪装掉下的眼泪 ", "点点头 承认自己会怕黑", "我只求 能借一点的时间来陪",
@@ -257,10 +264,11 @@ public class RightFragment extends Fragment {
                     "无所谓 反正难过就敷衍走一回 ", "但愿绝望和无奈远走高飞", "天灰灰 会不会  ",
                     "让我忘了你是谁 "};
             song2.setObjectView(tempobjectView2);
-            song2.setWriter("方文山");
-            song2.setZuoqu("周杰伦");
+            song2.setWriter("作词：方文山 ");
+            song2.setZuoqu("作曲：周杰伦");
+            song2.setSsrc("周杰伦—世界末日.mp3");
             songs.add(song2);
-            Song song3 = new Song(title, singer,objectview,writer,zuoqu);
+            Song song3 = new Song(title, singer,objectview,writer,zuoqu,ssrc);
             song3.setSinger("周杰伦");
             song3.setTitle("龙卷风");
             String[] tempobjectView3 = new String[]{"爱像一阵风 吹完它就走 ", "这样的节奏 谁都无可奈何 ", "没有你以后 我灵魂失控 ",
@@ -268,10 +276,11 @@ public class RightFragment extends Fragment {
                     "我的世界已狂风暴雨 ", "Wu 爱情来的太快就像龙卷风 ", "离不开暴风圈来不及逃 ",
                     "我不能再想我不能再想 "};
             song3.setObjectView(tempobjectView3);
-            song3.setWriter("徐若瑄");
-            song3.setZuoqu("周杰伦");
+            song3.setWriter("作词：徐若瑄 ");
+            song3.setZuoqu("作曲：周杰伦");
+            song3.setSsrc("周杰伦—龙卷风.mp3");
             songs.add(song3);
-            Song song4 = new Song(title, singer,objectview,writer,zuoqu);
+            Song song4 = new Song(title, singer,objectview,writer,zuoqu,ssrc);
             song4.setSinger("周杰伦");
             song4.setTitle("爱在西元前");
             String[] tempobjectView4 = new String[]{"古巴比伦王颁布了汉谟拉比法典", "刻在黑色的玄武岩 距今已经三千七百多年", "你在橱窗前 凝视碑文的字眼 ",
@@ -279,10 +288,11 @@ public class RightFragment extends Fragment {
                     "经过苏美女神身边 我以女神之名许愿", "思念像底格里斯河般的漫延 ", "当古文明只剩下难解的语言  ",
                     "传说就成了永垂不朽的诗篇 "};
             song4.setObjectView(tempobjectView4);
-            song4.setWriter("方文山");
-            song4.setZuoqu("周杰伦");
+            song4.setWriter("作词：方文山 ");
+            song4.setZuoqu("作曲：周杰伦");
+            song4.setSsrc("周杰伦—爱在西元前.mp3");
             songs.add(song4);
-            Song song5 = new Song(title, singer,objectview,writer,zuoqu);
+            Song song5 = new Song(title, singer,objectview,writer,zuoqu,ssrc);
             song5.setSinger("周杰伦");
             song5.setTitle("星晴");
             String[] tempobjectView5 = new String[]{"一步两步三步四步 望着天 手牵手 ", "一颗两颗三颗四颗 连成线看星星 ", "一步两步三步四步 望着天 手牵手 ",
@@ -290,8 +300,9 @@ public class RightFragment extends Fragment {
                     "捏成你的形状 ", "随风跟着我", "一口一口吃掉忧愁 ",
                     "载着你彷佛载着阳光  "};
             song5.setObjectView(tempobjectView5);
-            song5.setWriter("周杰伦");
-            song5.setZuoqu("周杰伦");
+            song5.setWriter("作词：周杰伦 ");
+            song5.setZuoqu("作曲：周杰伦");
+            song5.setSsrc("周杰伦—星晴.mp3");
             songs.add(song5);
         }
 

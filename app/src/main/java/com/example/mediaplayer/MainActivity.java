@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private Right3Fragment rightfragment3;
     private Right4Fragment rightfragment4;
     private Right5Fragment rightfragment5;
-    //private Fragment right1fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         rightfragment5 = Right5Fragment.newInstance();
 
 
-        //Right1Fragment right1fragment = Right1Fragment.newInstance();
         leftfragment.setOnChoiceChangedLisenter(new LeftFragment.OnChoiceChangedLisenter() {
             @Override
             public void onChoiceChanged(int index) {
@@ -52,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loadFragment(R.id.fg_leftlayout,leftfragment);
-        loadFragment(R.id.fg_rightlayout,rightfragment);
+        loadFragment(R.id.fg_leftlayout, leftfragment);
+        loadFragment(R.id.fg_rightlayout, rightfragment);
 
 
 /*        //开启事务，动态加载fragment到容器

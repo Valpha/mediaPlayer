@@ -1,8 +1,11 @@
 package com.example.mediaplayer;
 
+/**
+ *
+ */
 public class Song {
     private String title;
-    private  String singer ;
+    private String singer;
 
     public Song(String title, String singer) {
         this.title = title;

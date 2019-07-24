@@ -167,6 +167,7 @@
                         android:textSize="24px" />
 
                     <TextView
+                        android:id="@+id/tv_ssinger"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/tv_songname"

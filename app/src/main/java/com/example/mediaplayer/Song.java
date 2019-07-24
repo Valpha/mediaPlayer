@@ -3,10 +3,18 @@ package com.example.mediaplayer;
 public class Song {
     private String title;
     private  String singer ;
-
-    public Song(String title, String singer) {
+    private  String[] objectView;
+    public Song(String title, String singer,String[] objectView) {
         this.title = title;
         this.singer = singer;
+        this.objectView = objectView;
+    }
+
+    public String[] getObjectView() {
+        return objectView;
+    }
+    public void setObjectView(String[] objectView) {
+        this.objectView = objectView;
     }
 
     public String getTitle() {
@@ -23,5 +31,9 @@ public class Song {
 
     public void setSinger(String singer) {
         this.singer = singer;
+    }
+    public  int getObjectViewLength(){
+        int len = objectView.length;
+        return len;
     }
 }

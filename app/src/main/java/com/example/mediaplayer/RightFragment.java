@@ -4,6 +4,7 @@ package com.example.mediaplayer;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +36,8 @@ import java.util.List;
  * Use the {@link RightFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+
 public class RightFragment extends Fragment {
     private String tvContent;
     private ListView mlvcurl;
@@ -51,6 +56,11 @@ public class RightFragment extends Fragment {
     private ImageButton bt_modol;
     private ImageButton bt_nextsong;
     private ImageButton bt_playing;
+    private MediaPlayer mp;
+    private String[] songsrc = new String[]{"房东的猫 - 斑马斑马 (翻唱).mp3", "Delacey - Dream It Possible.mp3",
+                                            "Angie Miller - This Is the Life.mp3", "Edeema - I'm Yours (Edeema Remix).mp3"};
+    private int songOrder;
+
     private TextView tv_songname;
     private TextView tv_ssinger;
 
@@ -77,6 +87,11 @@ public class RightFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        songOrder = 0;
+        //音乐播放器
+        mp = new MediaPlayer();
+        musicStatusChange(songsrc[0]);
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_right, container, false);
         mlvcurl = (ListView)view.findViewById(R.id.lv_curl);
@@ -119,7 +134,7 @@ public class RightFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"播放",Toast.LENGTH_LONG).show();
-
+                mp.start();
             }
         });
 
@@ -127,8 +142,15 @@ public class RightFragment extends Fragment {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
-                    Toast.makeText(getActivity(),"下一首歌",Toast.LENGTH_LONG).show();
-//                    ac.onChoiceChanged("下一首");
+
+                    mp.reset();
+                    if(songOrder >= 3){
+                        songOrder = -1;
+                    }
+                    musicStatusChange(songsrc[++songOrder]);
+
+                    mp.start();
+                    Toast.makeText(getActivity(),"下一首歌"+songOrder,Toast.LENGTH_LONG).show();
                     ((ImageButton)view).setImageDrawable(getResources().getDrawable(R.drawable.next2));
                 }else if (event.getAction() == MotionEvent.ACTION_UP) {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.next1));
@@ -155,8 +177,14 @@ public class RightFragment extends Fragment {
             public boolean onTouch(View view, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
                     ((ImageButton)view).setImageDrawable(getResources().getDrawable(R.drawable.lastbt_two));
-                    Toast.makeText(getActivity(),"上一首歌",Toast.LENGTH_LONG).show();
-//                    ac.onChoiceChanged("上一首");
+
+                    mp.reset();
+                    if (songOrder <=0){
+                        songOrder = songsrc.length;
+                    }
+                    musicStatusChange(songsrc[--songOrder]);
+                    mp.start();
+                    Toast.makeText(getActivity(),"上一首歌"+songOrder,Toast.LENGTH_LONG).show();
                 }else if (event.getAction() == MotionEvent.ACTION_UP) {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.lastbt_com));
                 }
@@ -164,6 +192,18 @@ public class RightFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void musicStatusChange(String songname) {
+        File musicpath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
+        File mp3file = new File(musicpath, songname);
+        String path = mp3file.getAbsolutePath();
+        try {
+            mp.setDataSource(path);
+            mp.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateLyric(int index) {
@@ -365,4 +405,5 @@ public class RightFragment extends Fragment {
             public TextView lyric;
         }
     }
+
 }

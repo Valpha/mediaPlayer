@@ -150,7 +150,6 @@ public class RightFragment extends Fragment {
                     musicStatusChange(songs.get(++songOrder).getSsrc());
 
                     mp.start();
-                    Toast.makeText(getActivity(),"下一首歌"+songOrder,Toast.LENGTH_LONG).show();
                     ((ImageButton)view).setImageDrawable(getResources().getDrawable(R.drawable.next2));
 
                     curadapter.changeSelect(songOrder);
@@ -188,7 +187,6 @@ public class RightFragment extends Fragment {
                     }
                     musicStatusChange(songs.get(--songOrder).getSsrc());
                     mp.start();
-                    Toast.makeText(getActivity(),"上一首歌"+songOrder,Toast.LENGTH_LONG).show();
                     curadapter.changeSelect(songOrder);
 //                  歌词同步的封装
                     changeView(songOrder);

@@ -103,18 +103,6 @@ public class RightFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_right, container, false);
 
         initView(view);
-        lyricList = new ArrayList<>();
-        scanDisk();
-        musicStatusChange(songs.get(0).getSsrc());
-        final CurAdapter curadapter = new CurAdapter();
-        mlvcurl.setAdapter(curadapter);
-        mlvcurl.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                curadapter.changeSelect(i);
-                changeView(i);
-            }});
-
 
         sb_seek.setMax(100);
         sb_seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -145,6 +133,18 @@ public class RightFragment extends Fragment {
             }
         });
 
+        lyricList = new ArrayList<>();
+        scanDisk();
+        musicStatusChange(songs.get(0).getSsrc());
+        final CurAdapter curadapter = new CurAdapter();
+        mlvcurl.setAdapter(curadapter);
+        mlvcurl.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                curadapter.changeSelect(i);
+                changeView(i);
+            }});
+
         mbtPlaying.setOnClickListener(new View.OnClickListener() {
             private boolean i =true;
 
@@ -153,6 +153,7 @@ public class RightFragment extends Fragment {
                 if(i) {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.pause));
                     Toast.makeText(getActivity(), "正在播放", Toast.LENGTH_LONG).show();
+                    sb_seek.setMax(mp.getDuration());
                     mp.start();
 
                     TimerTask task = new TimerTask() {
@@ -164,7 +165,6 @@ public class RightFragment extends Fragment {
                         }
                     };
                     new Timer().schedule(task, 0 ,1000);
-
                     i =false;
                 }else {
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.play_1));

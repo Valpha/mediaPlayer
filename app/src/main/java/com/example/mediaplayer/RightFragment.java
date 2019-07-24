@@ -153,7 +153,7 @@ public class RightFragment extends Fragment {
                 if (event.getAction() == MotionEvent.ACTION_DOWN){
 
                     mp.reset();
-                    if(songOrder >= 3){
+                    if(songOrder >= songsrc.length - 1){
                         songOrder = -1;
                     }
                     musicStatusChange(songsrc[++songOrder]);
@@ -407,7 +407,7 @@ public class RightFragment extends Fragment {
             }
             viewholder.lyric.setText(lyricList.get(position).get("lyric"));
 //            viewholder.lyric.setTextColor(#FFFFFF);
-            if(position == 3){
+            if(position == 0){
                 //蓝色
                 viewholder.lyric.setTextColor(0xff01B8F9);
             }else {

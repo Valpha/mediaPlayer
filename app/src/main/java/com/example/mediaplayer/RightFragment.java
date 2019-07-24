@@ -21,6 +21,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -68,6 +73,7 @@ public class RightFragment extends Fragment {
     private TextView tv_writer;
     private TextView tv_gdci;
     private TextView tv_gdqu;
+    private SeekBar sb_seek;
 
     public RightFragment() {
         // Required empty public constructor
@@ -96,9 +102,10 @@ public class RightFragment extends Fragment {
         //音乐播放器
         mp = new MediaPlayer();
         musicStatusChange(songsrc[0]);
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_right, container, false);
+        sb_seek = (SeekBar)view.findViewById(R.id.v_seekbar);
+
         mlvcurl = (ListView)view.findViewById(R.id.lv_curl);
         tv_count=(TextView)view.findViewById(R.id.tv_count);
 
@@ -136,6 +143,36 @@ public class RightFragment extends Fragment {
                 tv_gdqu.setText("作曲：");
             }
         });
+        //seekbar
+        sb_seek.setMax(100);
+        sb_seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                Log.d(TAG, progress+"");
+                if(mp.isPlaying()){
+                    //实现过拽播放
+                    mp.seekTo(progress);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                //音乐播放结束
+                Log.d(TAG, "onCompletion---");
+            }
+        });
 
 
 
@@ -144,6 +181,15 @@ public class RightFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"播放",Toast.LENGTH_LONG).show();
                 mp.start();
+                sb_seek.setMax(mp.getDuration());
+                TimerTask task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        //1秒钟调用一次
+                        sb_seek.setProgress(mp.getCurrentPosition());
+                    }
+                };
+                new Timer().schedule(task, 0 ,1000);
             }
         });
 

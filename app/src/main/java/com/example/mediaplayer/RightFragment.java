@@ -50,24 +50,24 @@ public class RightFragment extends Fragment {
     LyricAdapter lyricadapter = new LyricAdapter();
     private List<Song> songs = new ArrayList<Song>();
     private List<HashMap<String, String>> lyricList;
-    private TextView tv_count;
+    private TextView mtvCount;
     private ListView lvGeci;
     private int curselect = -1;
     int flag = 0;
     private String[] objectview = null;
     private String ssrc;
-    private ImageButton bt_lastsong;
-    private ImageButton bt_modol;
-    private ImageButton bt_nextsong;
-    private ImageButton bt_playing;
+    private ImageButton mbtLastSong;
+    private ImageButton mbtModol;
+    private ImageButton mbtNextSong;
+    private ImageButton mbtPlaying;
     private MediaPlayer mp;
     private int songOrder;
 
-    private TextView tv_songname;
-    private TextView tv_ssinger;
-    private TextView tv_zuoqu;
-    private TextView tv_writer;
-    private ImageButton bt_favorite;
+    private TextView mtvSongName;
+    private TextView mtvsSinger;
+    private TextView mtvZuoQu;
+    private TextView mtvWriter;
+    private ImageButton mbtFavorite;
 
     public RightFragment() {
         // Required empty public constructor
@@ -95,43 +95,23 @@ public class RightFragment extends Fragment {
         songOrder = 0;
         //音乐播放器
         mp = new MediaPlayer();
-
-
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_right, container, false);
-        mlvcurl = (ListView) view.findViewById(R.id.lv_curl);
-        tv_count = (TextView) view.findViewById(R.id.tv_count);
 
-        bt_playing = (ImageButton) view.findViewById(R.id.palyingBtn);
-        bt_favorite = (ImageButton)view.findViewById(R.id.fravoriteBtn);
-        bt_nextsong = (ImageButton) view.findViewById(R.id.next_Btn);
-        bt_modol = (ImageButton) view.findViewById(R.id.modulBtn);
-        bt_lastsong = (ImageButton) view.findViewById(R.id.last_Btn);
-        tv_songname = (TextView) view.findViewById(R.id.tv_songname);
-        tv_ssinger = (TextView) view.findViewById(R.id.tv_ssinger);
-        lvGeci = (ListView) view.findViewById(R.id.lv_geci);
-        tv_zuoqu = (TextView) view.findViewById(R.id.tv_zuoqu);
-        tv_writer = (TextView) view.findViewById(R.id.tv_writer);
-
+        initView(view);
         lyricList = new ArrayList<>();
-
         scanDisk();
         musicStatusChange(songs.get(0).getSsrc());
         final CurAdapter curadapter = new CurAdapter();
         mlvcurl.setAdapter(curadapter);
-
         mlvcurl.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                调用位置
                 curadapter.changeSelect(i);
-//                歌词同步的封装
                 changeView(i);
-            }
-        });
+            }});
 
 
-        bt_playing.setOnClickListener(new View.OnClickListener() {
+        mbtPlaying.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "播放", Toast.LENGTH_LONG).show();
@@ -139,13 +119,14 @@ public class RightFragment extends Fragment {
             }
         });
 
-        bt_nextsong.setOnTouchListener(new View.OnTouchListener() {
+        mbtNextSong.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
                     mp.reset();
-                    if (songOrder >= 19) {
+                    int k=19;
+                    if (songOrder >= k) {
                         songOrder = -1;
                     }
                     musicStatusChange(songs.get(++songOrder).getSsrc());
@@ -162,7 +143,7 @@ public class RightFragment extends Fragment {
             }
         });
 
-        bt_modol.setOnClickListener(new View.OnClickListener() {
+        mbtModol.setOnClickListener(new View.OnClickListener() {
             private int i=0;
 
             @Override
@@ -183,7 +164,7 @@ public class RightFragment extends Fragment {
             }
         });
 
-        bt_lastsong.setOnTouchListener(new View.OnTouchListener() {
+        mbtLastSong.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -205,7 +186,7 @@ public class RightFragment extends Fragment {
             }
         });
 
-        bt_favorite.setOnClickListener(new View.OnClickListener() {
+        mbtFavorite.setOnClickListener(new View.OnClickListener() {
             private boolean i = true;
             @Override
             public void onClick(View view) {
@@ -223,15 +204,31 @@ public class RightFragment extends Fragment {
         return view;
     }
 
+    private void initView(View view) {
+        mlvcurl = (ListView) view.findViewById(R.id.lv_curl);
+        mtvCount = (TextView) view.findViewById(R.id.tv_count);
+        mbtPlaying = (ImageButton) view.findViewById(R.id.palyingBtn);
+        mbtFavorite = (ImageButton)view.findViewById(R.id.fravoriteBtn);
+        mbtNextSong = (ImageButton) view.findViewById(R.id.next_Btn);
+        mbtModol = (ImageButton) view.findViewById(R.id.modulBtn);
+        mbtLastSong = (ImageButton) view.findViewById(R.id.last_Btn);
+        mtvSongName = (TextView) view.findViewById(R.id.tv_songname);
+        mtvsSinger = (TextView) view.findViewById(R.id.tv_ssinger);
+        lvGeci = (ListView) view.findViewById(R.id.lv_geci);
+        mtvZuoQu = (TextView) view.findViewById(R.id.tv_zuoqu);
+        mtvWriter = (TextView) view.findViewById(R.id.tv_writer);
+
+    }
+
     private void changeView(int i) {
 //                updateLyric();
         lyricShow();
         lvGeci.setAdapter(lyricadapter);
         lyricadapter.notifyDataSetChanged();
-        tv_songname.setText(songs.get(i).getTitle());
-        tv_ssinger.setText(songs.get(i).getSinger());
-        tv_writer.setText(songs.get(i).getWriter());
-        tv_zuoqu.setText(songs.get(i).getZuoqu());
+        mtvSongName.setText(songs.get(i).getTitle());
+        mtvsSinger.setText(songs.get(i).getSinger());
+        mtvWriter.setText(songs.get(i).getWriter());
+        mtvZuoQu.setText(songs.get(i).getZuoqu());
     }
 
     private void musicStatusChange(String songname) {
@@ -258,7 +255,7 @@ public class RightFragment extends Fragment {
             pos = curselect;
         }
         for (int t = 0; t < songs.get(pos).getObjectViewLength(); t++) {
-            HashMap<String, String> map = new HashMap<>();
+            HashMap<String, String> map = new HashMap<>(50);
             map.put("lyric", songs.get(pos).getObjectView()[t]);
             lyricList.add(map);
         }
@@ -269,7 +266,8 @@ public class RightFragment extends Fragment {
      * @return 往song中加歌曲
      */
     private List<Song> scanDisk() {
-        for (int i = 0; i < 4; i++) {
+        int k=4;
+        for (int i = 0; i < k; i++) {
             Song song1 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
             song1.setSinger("周杰伦");
             song1.setTitle("反方向的钟");
@@ -380,7 +378,7 @@ public class RightFragment extends Fragment {
                 viewHolder.singer.setTextColor(0xff01B8F9);
                 viewHolder.status.setVisibility(View.VISIBLE);
                 int position = i + 1;
-                tv_count.setText(position + "/20");
+                mtvCount.setText(position + "/20");
                 curltosong(curselect);
             } else {
                 viewHolder.status.setVisibility(View.INVISIBLE);
@@ -420,7 +418,9 @@ public class RightFragment extends Fragment {
     }
 
 
-    //歌词colum的adapter
+   /**
+    * 歌词的adapter
+    */
     private class LyricAdapter extends BaseAdapter {
         @Override
         public int getCount() {

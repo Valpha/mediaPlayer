@@ -1,81 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <RadioGroup
-
-
         android:id="@+id/rg_leftselect"
-        android:layout_width="115dp"
+        android:layout_width="140dp"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="48dp"
         android:checkedButton="@id/rb_playing"
         android:orientation="vertical">
 
         <RadioButton
-
             android:id="@+id/rb_playing"
             style="@style/MusicSelectItemStyle"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableTop="@drawable/rb_isplaying_selector"
-            android:gravity="center"
-            android:textSize="-20sp" />
+            android:drawableRight="@drawable/rb_isplaying_selector" />
 
         <RadioButton
             android:id="@+id/rb_webmusic"
             style="@style/MusicSelectItemStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableTop="@drawable/rb_netorkmusic_selector" />
+            android:drawableRight="@drawable/rb_netorkmusic_selector" />
 
         <RadioButton
             android:id="@+id/rb_localmusic"
             style="@style/MusicSelectItemStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableTop="@drawable/rb_localmusi_selector" />
+            android:drawableRight="@drawable/rb_localmusi_selector" />
 
         <RadioButton
             android:id="@+id/rb_connecttype"
             style="@style/MusicSelectItemStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableTop="@drawable/rb_connect_selector" />
+            android:drawableRight="@drawable/rb_connect_selector" />
 
         <RadioButton
             android:id="@+id/rb_playlist"
             style="@style/MusicSelectItemStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableTop="@drawable/rb_playlist_selector" />
+            android:drawableRight="@drawable/rb_playlist_selector" />
 
         <RadioButton
             android:id="@+id/rb_myFavorite"
             style="@style/MusicSelectItemStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:drawableTop="@drawable/rb_myfavorite_selector" />
+            android:drawableRight="@drawable/rb_myfavorite_selector" />
 
     </RadioGroup>
 
-</LinearLayout>
+</FrameLayout>

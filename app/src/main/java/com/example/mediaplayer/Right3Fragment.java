@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
  * to handle interaction events.
  * Use the {@link Right3Fragment#newInstance} factory method to
  * create an instance of this fragment.
+ * @author ycn
  */
 public class Right3Fragment extends Fragment {
     private TextView tvContent3;
@@ -22,6 +23,7 @@ public class Right3Fragment extends Fragment {
     public Right3Fragment() {
         // Required empty public constructor
     }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -42,7 +44,7 @@ public class Right3Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_right3, container, false);
+        View view = inflater.inflate(R.layout.fragment_right3, container, false);
         tvContent3 = view.findViewById(R.id.tv_content3);
         return view;
     }

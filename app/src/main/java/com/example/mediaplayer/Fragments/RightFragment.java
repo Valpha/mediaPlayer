@@ -1,16 +1,12 @@
-package com.example.mediaplayer;
-import android.database.Cursor;
+package com.example.mediaplayer.Fragments;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -27,6 +23,10 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mediaplayer.R;
+import com.example.mediaplayer.Song;
+import com.example.mediaplayer.Utils;
 
 import java.io.File;
 import java.io.IOException;

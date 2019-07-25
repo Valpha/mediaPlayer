@@ -1,4 +1,4 @@
-package com.example.mediaplayer;
+package com.example.mediaplayer.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,19 +8,21 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.mediaplayer.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * to handle interaction events.
- * Use the {@link Right2Fragment#newInstance} factory method to
+ * Use the {@link Right5Fragment#newInstance} factory method to
  * create an instance of this fragment.
  * @author ycn
  */
-public class Right2Fragment extends Fragment {
-    private TextView tvContent2;
+public class Right5Fragment extends Fragment {
+    private TextView tvContent5;
 
-    public Right2Fragment() {
+    public Right5Fragment() {
         // Required empty public constructor
     }
 
@@ -30,8 +32,8 @@ public class Right2Fragment extends Fragment {
      *
      * @return A new instance of fragment LeftFragment.
      */
-    public static Right2Fragment newInstance() {
-        Right2Fragment fragment = new Right2Fragment();
+    public static Right5Fragment newInstance() {
+        Right5Fragment fragment = new Right5Fragment();
         return fragment;
     }
 
@@ -44,8 +46,8 @@ public class Right2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_right2, container, false);
-        tvContent2 = view.findViewById(R.id.tv_content2);
+        View view = inflater.inflate(R.layout.fragment_right5, container, false);
+        tvContent5 = view.findViewById(R.id.tv_content5);
         return view;
     }
 

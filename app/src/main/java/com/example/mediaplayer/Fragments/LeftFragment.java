@@ -1,15 +1,16 @@
-package com.example.mediaplayer;
+package com.example.mediaplayer.Fragments;
 
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
+
+import com.example.mediaplayer.R;
 
 
 /**

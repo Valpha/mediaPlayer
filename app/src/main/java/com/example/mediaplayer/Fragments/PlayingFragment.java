@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,8 +23,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mediaplayer.Listeners.MyCurListItemListener;
 import com.example.mediaplayer.Listeners.MyOnCompletionListener;
 import com.example.mediaplayer.Listeners.MySeekBarSeekToListener;
+import com.example.mediaplayer.AudioPlayer;
 import com.example.mediaplayer.R;
 import com.example.mediaplayer.Song;
 import com.example.mediaplayer.Utils;
@@ -40,12 +41,13 @@ import java.util.TimerTask;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RightFragment#newInstance} factory method to
+ * Use the {@link PlayingFragment#getInstance} factory method to
  * create an instance of this fragment.
  *
  * @author ycn
  */
-public class RightFragment extends Fragment {
+public class PlayingFragment extends Fragment {
+    private static PlayingFragment playingFragment = new PlayingFragment();
     private String tvContent;
     private ListView mlvcurl;
     private String title;
@@ -73,27 +75,21 @@ public class RightFragment extends Fragment {
     private TextView mtvWriter;
     private ImageButton mbtFavorite;
     private SeekBar sb_seek;
-    private String TAG = "RightFragment";
+    private String TAG = "fragment_playing";
     private View ivCd;
     private Animation cdAmination;
     private int ii;
     private ImageView iv_cover;
     private ImageView iv_reflection;
     private ImageView iv_smallCover;
+    private String picpath;
 
-    public RightFragment() {
+    public PlayingFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment LeftFragment.
-     */
-    public static RightFragment newInstance() {
-        RightFragment fragment = new RightFragment();
-        return fragment;
+    public static PlayingFragment getInstance() {
+        return playingFragment;
     }
 
     @Override
@@ -111,11 +107,11 @@ public class RightFragment extends Fragment {
 
         //音乐播放器
         mp = new MediaPlayer();
-        View view = inflater.inflate(R.layout.fragment_right, container, false);
+        View view = inflater.inflate(R.layout.fragment_playing, container, false);
 
         initView(view);
 
-       testLoadCover();
+//       testLoadCover();
 
 
         initCDAnim();
@@ -129,20 +125,7 @@ public class RightFragment extends Fragment {
         musicStatusChange(songs.get(0).getSsrc());
         final CurAdapter curadapter = new CurAdapter();
         mlvcurl.setAdapter(curadapter);
-        mlvcurl.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                curadapter.changeSelect(i);
-                changeView(i);
-                songOrder =i;
-                mp.reset();
-                musicStatusChange(songs.get(i).getSsrc());
-                mp.start();
-                mbtPlaying.setImageDrawable(getResources().getDrawable(R.drawable.pause));
-                ii=1;
-            }
-
-        });
+        mlvcurl.setOnItemClickListener(new MyCurListItemListener());
 
         mbtPlaying.setOnClickListener(new View.OnClickListener() {
 
@@ -157,13 +140,13 @@ public class RightFragment extends Fragment {
                         ivCd.clearAnimation();
                         ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.play_1));
                         ii = 0;
-                        Toast.makeText(getActivity(), "已经暂停", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "已经暂停", Toast.LENGTH_LONG).show();
                         mp.pause();
                     } else {
                          ivCd.startAnimation(cdAmination);
                          ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.pause));
 
-                          Toast.makeText(getActivity(), "正在播放", Toast.LENGTH_LONG).show();
+//                          Toast.makeText(getActivity(), "正在播放", Toast.LENGTH_LONG).show();
 //                          musicStatusChange(songs.get(songOrder).getSsrc());
                            sb_seek.setMax(mp.getDuration());
                            mp.start();
@@ -246,6 +229,7 @@ public class RightFragment extends Fragment {
                     changeView(songOrder);
 
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.lastbt_com));
 
                 }
                 return false;
@@ -271,9 +255,8 @@ public class RightFragment extends Fragment {
         return view;
     }
 
-    private void testLoadCover() {
-
-        Bitmap bitmap = BitmapFactory.decodeFile("/sdcard/Pictures/Jay Chou.jpg");
+    private void testLoadCover(int i) {
+        Bitmap bitmap = BitmapFactory.decodeFile(songs.get(i).getPicpath());
         Utils.loadCover(bitmap, iv_cover, iv_reflection, iv_smallCover);
 
     }
@@ -348,7 +331,7 @@ public class RightFragment extends Fragment {
     private List<Song> scanDisk() {
         int k = 4;
         for (int i = 0; i < k; i++) {
-            Song song1 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
+            Song song1 = new Song(title, singer, objectview, writer, zuoqu, ssrc,picpath);
             song1.setSinger("BAMBOO");
             song1.setTitle("让他走");
             String[] tempobjectView = new String[]{ "他还是走了对吗 ",
@@ -372,8 +355,9 @@ public class RightFragment extends Fragment {
             song1.setWriter("作词：Bamboo.Lee ");
             song1.setZuoqu("作曲：Bamboo.Lee");
             song1.setSsrc("BAMBOO - 让他走.mp3");
+            song1.setPicpath("/sdcard/Pictures/bird.jpg");
             songs.add(song1);
-            Song song2 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
+            Song song2 = new Song(title, singer, objectview, writer, zuoqu, ssrc,picpath);
             song2.setSinger("Jocelyn Pook Russian Red ");
             song2.setTitle("Loving Strangers");
             String[] tempobjectView2 = new String[]{"Ahah"
@@ -395,8 +379,9 @@ public class RightFragment extends Fragment {
             song2.setWriter("作词：未知 ");
             song2.setZuoqu("作曲：未知");
             song2.setSsrc("Jocelyn Pook Russian Red - Loving Strangers.mp3");
+            song2.setPicpath("/sdcard/Pictures/pic2.jpg");
             songs.add(song2);
-            Song song3 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
+            Song song3 = new Song(title, singer, objectview, writer, zuoqu, ssrc,picpath);
             song3.setSinger("Nuo.");
             song3.setTitle("天气之子-グランドエスケープ");
             String[] tempobjectView3 = new String[]{"那个夏天的日子"
@@ -417,8 +402,9 @@ public class RightFragment extends Fragment {
             song3.setWriter("作词：RADWIMPS ");
             song3.setZuoqu("作曲：RADWIMPS");
             song3.setSsrc("Nuo. - 天气之子-グランドエスケープ（Cover：RADWIMPS）.mp3");
+            song3.setPicpath("/sdcard/Pictures/pic3.jpg");
             songs.add(song3);
-            Song song4 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
+            Song song4 = new Song(title, singer, objectview, writer, zuoqu, ssrc,picpath);
             song4.setSinger(" 黒木渚");
             song4.setTitle("カルデラ");
             String[] tempobjectView4 = new String[]{"不要看我挣扎的样子"
@@ -439,8 +425,9 @@ public class RightFragment extends Fragment {
             song4.setWriter("作词： 黒木渚 ");
             song4.setZuoqu("作曲： 黒木渚");
             song4.setSsrc("黒木渚 - カルデラ.mp3");
+            song4.setPicpath("/sdcard/Pictures/pic4.jpg");
             songs.add(song4);
-            Song song5 = new Song(title, singer, objectview, writer, zuoqu, ssrc);
+            Song song5 = new Song(title, singer, objectview, writer, zuoqu, ssrc,picpath);
             song5.setSinger("相对论");
             song5.setTitle("最后的晚餐");
             String[] tempobjectView5 = new String[]{ "灯光下酒杯在旋转 酒杯里有半只香烟 香烟里有欲望蔓延"
@@ -459,6 +446,7 @@ public class RightFragment extends Fragment {
             song5.setWriter("作词：邵庄 ");
             song5.setZuoqu("作曲：相对论乐队");
             song5.setSsrc("相对论 - 最后的晚餐.mp3");
+            song5.setPicpath("/sdcard/Pictures/tupian3.jpg");
             songs.add(song5);
         }
 

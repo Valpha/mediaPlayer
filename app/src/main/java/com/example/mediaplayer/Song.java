@@ -11,14 +11,24 @@ public class Song {
     private  String writer;
     private  String zuoqu;
     private  String ssrc;
+    private  String picpath;
 
-    public Song(String title, String singer,String[] objectView, String writer, String zuoqu,String songsrc) {
+    public Song(String title, String singer,String[] objectView, String writer, String zuoqu,String songsrc,String picpath) {
         this.title = title;
         this.singer = singer;
         this.objectView = objectView;
         this.zuoqu=zuoqu;
         this.writer=writer;
         this.ssrc =songsrc;
+        this.picpath = picpath;
+    }
+
+    public String getPicpath() {
+        return picpath;
+    }
+
+    public void setPicpath(String picpath) {
+        this.picpath = picpath;
     }
 
     public String getSsrc() {

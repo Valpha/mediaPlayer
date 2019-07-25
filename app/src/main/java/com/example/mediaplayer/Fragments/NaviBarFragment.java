@@ -15,19 +15,19 @@ import com.example.mediaplayer.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RightFragment#newInstance} factory method to
+ * Use the {@link PlayingFragment#getInstance} factory method to
  * create an instance of this fragment.
  *
  * @author ycn
  */
-public class LeftFragment extends Fragment {
+public class NaviBarFragment extends Fragment {
     private RadioGroup mLeftSelect;
     private OnChoiceChangedLisenter mListner;
 
     /**
      * 用于创建新的fragment
      */
-    public LeftFragment() {
+    public NaviBarFragment() {
 
     }
 
@@ -35,8 +35,8 @@ public class LeftFragment extends Fragment {
     /**
      * @return fragment
      */
-    public static LeftFragment newInstance() {
-        LeftFragment fragment = new LeftFragment();
+    public static NaviBarFragment newInstance() {
+        NaviBarFragment fragment = new NaviBarFragment();
         return fragment;
     }
 
@@ -59,7 +59,7 @@ public class LeftFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_left, container, false);
+        View view = inflater.inflate(R.layout.fragment_navibar, container, false);
         mLeftSelect = view.findViewById(R.id.rg_leftselect);
         mLeftSelect.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

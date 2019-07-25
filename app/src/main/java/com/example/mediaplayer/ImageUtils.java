@@ -14,6 +14,7 @@ import android.graphics.Shader.TileMode;
 
 /**
  * 图片处理工具类（缩放，圆角，倒影）
+ * @author Valpha
  */
 public class ImageUtils {
     /**

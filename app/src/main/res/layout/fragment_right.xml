@@ -194,7 +194,7 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/cutline" />
+                        android:src="@drawable/cutline" />t
 
                     <LinearLayout
                         android:id="@+id/LL_zuoqu"

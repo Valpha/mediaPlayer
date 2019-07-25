@@ -3,6 +3,7 @@ package com.example.mediaplayer;
 /**
  * @Song
  */
+
 public class Song {
     private String title;
     private  String singer ;
@@ -66,6 +67,7 @@ public class Song {
     public void setSinger(String singer) {
         this.singer = singer;
     }
+
     public  int getObjectViewLength(){
         int len = objectView.length;
         return len;

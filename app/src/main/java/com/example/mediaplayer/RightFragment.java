@@ -1,6 +1,4 @@
 package com.example.mediaplayer;
-
-
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -38,7 +36,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link RightFragment#newInstance} factory method to
@@ -46,8 +43,6 @@ import java.util.TimerTask;
  *
  * @author ycn
  */
-
-
 public class RightFragment extends Fragment {
     private String tvContent;
     private ListView mlvcurl;
@@ -70,7 +65,6 @@ public class RightFragment extends Fragment {
     private ImageButton mbtPlaying;
     private MediaPlayer mp;
     private int songOrder;
-
     private TextView mtvSongName;
     private TextView mtvsSinger;
     private TextView mtvZuoQu;
@@ -80,6 +74,7 @@ public class RightFragment extends Fragment {
     private String TAG = "RightFragment";
     private View ivCd;
     private Animation cdAmination;
+    private int ii;
     private ImageView iv_cover;
     private ImageView iv_reflection;
     private ImageView iv_smallCover;
@@ -110,14 +105,15 @@ public class RightFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        songOrder = 0;
+
+
         //音乐播放器
         mp = new MediaPlayer();
         View view = inflater.inflate(R.layout.fragment_right, container, false);
 
         initView(view);
 
-        testLoadCover();
+//        testLoadCover();
 
 
         initCDAnim();
@@ -149,9 +145,10 @@ public class RightFragment extends Fragment {
                 Log.d(TAG, "onCompletion---");
             }
         });
-
+        songOrder = -1;
         lyricList = new ArrayList<>();
         scanDisk();
+
         musicStatusChange(songs.get(0).getSsrc());
         final CurAdapter curadapter = new CurAdapter();
         mlvcurl.setAdapter(curadapter);
@@ -160,60 +157,69 @@ public class RightFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 curadapter.changeSelect(i);
                 changeView(i);
+                songOrder =i;
+                mp.reset();
+                musicStatusChange(songs.get(i).getSsrc());
+                mp.start();
+                mbtPlaying.setImageDrawable(getResources().getDrawable(R.drawable.pause));
+                ii=1;
             }
+
         });
 
-
         mbtPlaying.setOnClickListener(new View.OnClickListener() {
-            private boolean i = true;
 
+            //            private Boolean i = false;
             @Override
             public void onClick(View view) {
-
-
-                if (i) {
-
-                    ivCd.startAnimation(cdAmination);
-                    ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.pause));
-                    Toast.makeText(getActivity(), "正在播放", Toast.LENGTH_LONG).show();
-                    sb_seek.setMax(mp.getDuration());
-                    mp.start();
-
-                    TimerTask task = new TimerTask() {
-                        @Override
-                        public void run() {
-                            //1秒钟调用一次
-                            sb_seek.setProgress(mp.getCurrentPosition());
-
-                        }
-                    };
-                    new Timer().schedule(task, 0, 1000);
-                    i = false;
-                }else{
-                    ivCd.clearAnimation();
-                    ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.play_1));
-                    Toast.makeText(getActivity(), "已经暂停", Toast.LENGTH_LONG).show();
-                    mp.pause();
-                    i = true;
+                if(songOrder<0){
+                    Toast.makeText(getActivity(), "抱歉当前没有选中的歌曲哦"+songOrder, Toast.LENGTH_SHORT).show();
                 }
-            }
+                else{
+                    if (ii == 1) {
+                        ivCd.clearAnimation();
+                        ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.play_1));
+                        ii = 0;
+                        Toast.makeText(getActivity(), "已经暂停", Toast.LENGTH_LONG).show();
+                        mp.pause();
+                    } else {
+                         ivCd.startAnimation(cdAmination);
+                         ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.pause));
+
+                          Toast.makeText(getActivity(), "正在播放", Toast.LENGTH_LONG).show();
+//                          musicStatusChange(songs.get(songOrder).getSsrc());
+                           sb_seek.setMax(mp.getDuration());
+                           mp.start();
+                           ii=1;
+                           TimerTask task = new TimerTask() {
+                           @Override
+                           public void run() {
+                               //1秒钟调用一次
+                               sb_seek.setProgress(mp.getCurrentPosition());
+
+                           }
+                          };
+                          new Timer().schedule(task, 0, 1000);
+
+                      }
+                }
+                }
         });
 
         mbtNextSong.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
                     mp.reset();
                     int k = 19;
                     if (songOrder >= k) {
                         songOrder = -1;
                     }
                     musicStatusChange(songs.get(++songOrder).getSsrc());
-
+                    ii=1;
+                    mbtPlaying.setImageDrawable(getResources().getDrawable(R.drawable.pause));
                     mp.start();
                     ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.next2));
-
                     curadapter.changeSelect(songOrder);
                     changeView(songOrder);
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -254,13 +260,16 @@ public class RightFragment extends Fragment {
                     if (songOrder < 1) {
                         songOrder = 20;
                     }
+                    ii=1;
+                    mbtPlaying.setImageDrawable(getResources().getDrawable(R.drawable.pause));
                     musicStatusChange(songs.get(--songOrder).getSsrc());
                     mp.start();
                     curadapter.changeSelect(songOrder);
 //                  歌词同步的封装
                     changeView(songOrder);
+
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.lastbt_com));
+
                 }
                 return false;
             }

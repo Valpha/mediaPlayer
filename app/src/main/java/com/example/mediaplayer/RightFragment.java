@@ -113,7 +113,7 @@ public class RightFragment extends Fragment {
 
         initView(view);
 
-//        testLoadCover();
+//       testLoadCover();
 
 
         initCDAnim();
@@ -180,13 +180,13 @@ public class RightFragment extends Fragment {
                         ivCd.clearAnimation();
                         ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.play_1));
                         ii = 0;
-                        Toast.makeText(getActivity(), "已经暂停", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getActivity(), "已经暂停", Toast.LENGTH_LONG).show();
                         mp.pause();
                     } else {
                          ivCd.startAnimation(cdAmination);
                          ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.pause));
 
-                          Toast.makeText(getActivity(), "正在播放", Toast.LENGTH_LONG).show();
+//                          Toast.makeText(getActivity(), "正在播放", Toast.LENGTH_LONG).show();
 //                          musicStatusChange(songs.get(songOrder).getSsrc());
                            sb_seek.setMax(mp.getDuration());
                            mp.start();

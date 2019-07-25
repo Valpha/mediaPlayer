@@ -30,7 +30,7 @@ public class Right3Fragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @return A new instance of fragment LeftFragment.
+     * @return A new instance of fragment fragment_navibar.
      */
     public static Right3Fragment newInstance() {
         Right3Fragment fragment = new Right3Fragment();

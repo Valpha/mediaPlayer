@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".Fragments.LeftFragment">
+    tools:context=".Fragments.NaviBarFragment">
 
 
     <!--当前播放列表界面布局-->

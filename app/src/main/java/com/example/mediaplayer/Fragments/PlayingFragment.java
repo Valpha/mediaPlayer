@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,12 +39,13 @@ import java.util.TimerTask;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RightFragment#newInstance} factory method to
+ * Use the {@link PlayingFragment#getInstance} factory method to
  * create an instance of this fragment.
  *
  * @author ycn
  */
-public class RightFragment extends Fragment {
+public class PlayingFragment extends Fragment {
+    private static PlayingFragment playingFragment = new PlayingFragment();
     private String tvContent;
     private ListView mlvcurl;
     private String title;
@@ -73,7 +73,7 @@ public class RightFragment extends Fragment {
     private TextView mtvWriter;
     private ImageButton mbtFavorite;
     private SeekBar sb_seek;
-    private String TAG = "RightFragment";
+    private String TAG = "fragment_playing";
     private View ivCd;
     private Animation cdAmination;
     private int ii;
@@ -81,19 +81,12 @@ public class RightFragment extends Fragment {
     private ImageView iv_reflection;
     private ImageView iv_smallCover;
 
-    public RightFragment() {
+    public PlayingFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment LeftFragment.
-     */
-    public static RightFragment newInstance() {
-        RightFragment fragment = new RightFragment();
-        return fragment;
+    public static PlayingFragment getInstance() {
+        return playingFragment;
     }
 
     @Override
@@ -111,7 +104,7 @@ public class RightFragment extends Fragment {
 
         //音乐播放器
         mp = new MediaPlayer();
-        View view = inflater.inflate(R.layout.fragment_right, container, false);
+        View view = inflater.inflate(R.layout.fragment_playing, container, false);
 
         initView(view);
 

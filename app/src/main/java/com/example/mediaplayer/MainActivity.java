@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Layout;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -37,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
         rightfragment4 = Right4Fragment.newInstance();
         rightfragment5 = Right5Fragment.newInstance();
 
+        /*
+        * 隐藏状态栏
+        * 设置沉浸式状态栏
+        *
+        * */
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_FULLSCREEN
+                // | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        );
 
         leftfragment.setOnChoiceChangedLisenter(new LeftFragment.OnChoiceChangedLisenter() {
             @Override
@@ -47,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         loadFragment(R.id.fg_leftlayout, leftfragment);
         loadFragment(R.id.fg_rightlayout, rightfragment);
+
 
 
 

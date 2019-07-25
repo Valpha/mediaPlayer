@@ -2,6 +2,8 @@ package com.example.mediaplayer;
 
 
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
@@ -78,6 +80,9 @@ public class RightFragment extends Fragment {
     private String TAG = "RightFragment";
     private View ivCd;
     private Animation cdAmination;
+    private ImageView iv_cover;
+    private ImageView iv_reflection;
+    private ImageView iv_smallCover;
 
     public RightFragment() {
         // Required empty public constructor
@@ -111,6 +116,10 @@ public class RightFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_right, container, false);
 
         initView(view);
+
+        testLoadCover();
+
+
         initCDAnim();
         sb_seek.setMax(100);
         sb_seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -276,6 +285,13 @@ public class RightFragment extends Fragment {
         return view;
     }
 
+    private void testLoadCover() {
+
+        Bitmap bitmap = BitmapFactory.decodeFile("/sdcard/Pictures/Jay Chou.jpg");
+        Utils.loadCover(bitmap, iv_cover, iv_reflection, iv_smallCover);
+
+    }
+
     private void initView(View view) {
         mlvcurl = (ListView) view.findViewById(R.id.lv_curl);
         mtvCount = (TextView) view.findViewById(R.id.tv_count);
@@ -291,6 +307,10 @@ public class RightFragment extends Fragment {
         mtvWriter = (TextView) view.findViewById(R.id.tv_writer);
         sb_seek = (SeekBar) view.findViewById(R.id.v_seekbar);
         ivCd = (ImageView) view.findViewById(R.id.iv_changpian);
+
+        iv_cover = (ImageView) view.findViewById(R.id.iv_cover);
+        iv_reflection = (ImageView) view.findViewById(R.id.iv_reflection);
+        iv_smallCover = (ImageView) view.findViewById(R.id.iv_xiaotu);
 
     }
 

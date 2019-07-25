@@ -24,6 +24,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mediaplayer.Listeners.MyOnCompletionListener;
+import com.example.mediaplayer.Listeners.MySeekBarSeekToListener;
 import com.example.mediaplayer.R;
 import com.example.mediaplayer.Song;
 import com.example.mediaplayer.Utils;
@@ -118,33 +120,8 @@ public class RightFragment extends Fragment {
 
         initCDAnim();
         sb_seek.setMax(100);
-        sb_seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Log.d(TAG, progress + "");
-                if (mp.isPlaying()) {
-                    //实现过拽播放
-                    mp.seekTo(progress);
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                //音乐播放结束
-                Log.d(TAG, "onCompletion---");
-            }
-        });
+        sb_seek.setOnSeekBarChangeListener(new MySeekBarSeekToListener());
+        mp.setOnCompletionListener(new MyOnCompletionListener() );
         songOrder = -1;
         lyricList = new ArrayList<>();
         scanDisk();

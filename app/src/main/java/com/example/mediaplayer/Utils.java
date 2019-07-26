@@ -112,4 +112,20 @@ public class Utils {
         SharedPreferencesUtils sharedPreferencesUtils = SharedPreferencesUtils.getInstance();
         return sharedPreferencesUtils.readInt(Contract.SHAREDPREFERENCES_CURRENTORDER);
     }
+
+    public static void setPlayingMode(PlayMode playMode) {
+        SharedPreferencesUtils sharedPreferencesUtils = SharedPreferencesUtils.getInstance();
+        sharedPreferencesUtils.writeString(Contract.SHAREDPREFERENCES_PLAYMODE, playMode.toString());
+    }
+
+    public static PlayMode getPlayingMode() {
+        SharedPreferencesUtils sharedPreferencesUtils = SharedPreferencesUtils.getInstance();
+        String playMode = sharedPreferencesUtils.readString(Contract.SHAREDPREFERENCES_PLAYMODE);
+        if (playMode == null){
+            playMode = "SEQUENCE";
+        }
+        return PlayMode.valueOf(playMode);
+    }
+
+
 }

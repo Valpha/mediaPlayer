@@ -1,26 +1,58 @@
 package com.example.mediaplayer;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /**
- * @Song
+ *
  */
 
 public class Song {
     private String title;
-    private  String singer ;
-    private  String[] objectView;
-    private  String writer;
-    private  String zuoqu;
-    private  String ssrc;
-    private  String picpath;
+    private String singer;
+    private String[] objectView;
+    private String writer;
+    private String zuoqu;
+    private String ssrc;
+    private String picpath;
+    private Bitmap cover;
+    private HashMap<String, String> lyricList = new HashMap<>(50);
+    private boolean favorite;
 
-    public Song(String title, String singer,String[] objectView, String writer, String zuoqu,String songsrc,String picpath) {
+    /**
+     * @param title
+     * @param singer
+     * @param objectView
+     * @param writer
+     * @param zuoqu
+     * @param songsrc
+     * @param picpath
+     * @param lyricPath
+     */
+    public Song(String title, String singer, String[] objectView, String writer, String zuoqu, String songsrc, String picpath, String lyricPath) {
         this.title = title;
         this.singer = singer;
         this.objectView = objectView;
-        this.zuoqu=zuoqu;
-        this.writer=writer;
-        this.ssrc =songsrc;
+        this.zuoqu = zuoqu;
+        this.writer = writer;
+        this.ssrc = songsrc;
         this.picpath = picpath;
+        this.cover = BitmapFactory.decodeFile(picpath);
+        // TODO:Implement this method
+        // this.lyricList = getLyricFromLyricPath(lyricPath);
+
+        this.favorite = false;
+    }
+
+    private List<HashMap<String, String>> getLyricFromLyricPath(String lyricPath) {
+        // TODO:Implement this method
+        List<HashMap<String, String>> lrcList = null;
+        /*在这里解析歌词文件，解析成哈希表的数据类型并返回*/
+        return lrcList;
     }
 
     public String getPicpath() {
@@ -28,7 +60,7 @@ public class Song {
     }
 
     public void setPicpath(String picpath) {
-        this.picpath = picpath;
+        this.cover = BitmapFactory.decodeFile(picpath);
     }
 
     public String getSsrc() {
@@ -58,7 +90,11 @@ public class Song {
     public String[] getObjectView() {
         return objectView;
     }
+
     public void setObjectView(String[] objectView) {
+        for (int i=0;i<objectView.length;i++){
+            lyricList.put(String.valueOf(i), objectView[i]);
+        }
         this.objectView = objectView;
     }
 
@@ -78,8 +114,22 @@ public class Song {
         this.singer = singer;
     }
 
-    public  int getObjectViewLength(){
+    public int getObjectViewLength() {
         int len = objectView.length;
         return len;
+    }
+
+    public Bitmap getCover() {
+        return cover;
+
+    }
+
+    public HashMap<String, String> getLyric() {
+        return lyricList;
+    }
+
+
+    public boolean getFavorite() {
+        return favorite;
     }
 }

@@ -5,7 +5,7 @@ import android.media.MediaPlayer;
 import java.io.IOException;
 
 /**
- *
+ * @author Valpha
  */
 public class AudioPlayer {
     private MediaPlayer mediaPlayer;
@@ -14,23 +14,24 @@ public class AudioPlayer {
     /**
      * initial a MediaPlayer instance
      */
-    private AudioPlayer(){
+    private AudioPlayer() {
         mediaPlayer = new MediaPlayer();
     }
 
     /**
      * @return AudioPlayerInstance
-     *
+     * <p>
      * use audioPlayer.xxx to use mediaPlayer
      */
-    public static AudioPlayer getInstance(){
+    public static AudioPlayer getInstance() {
         return audioPlayer;
     }
+
 
     /**
      * reser mediaPlayer
      */
-    public void setMediaPlayerReset(){
+    public void setMediaPlayerReset() {
         mediaPlayer.reset();
     }
 
@@ -45,51 +46,58 @@ public class AudioPlayer {
     /**
      * @throws IOException anything happen
      */
-     public void setMediaPlayerPrepare() throws IOException {
+    public void setMediaPlayerPrepare() throws IOException {
         mediaPlayer.prepare();
-     }
+    }
 
     /**
      * @param progress progress in percent
      */
-     public void setMediaPlayerSeekTo(int progress){
-         int duration = mediaPlayer.getDuration();
-         int curPos = duration * progress;
-         mediaPlayer.seekTo(curPos);
-     }
+    public void setMediaPlayerSeekTo(int progress) {
+
+        mediaPlayer.seekTo(progress);
+    }
 
     /**
      * start playing
      */
-     public void setMediaPlayerStart(){
+    public void setMediaPlayerStart() {
         mediaPlayer.start();
-     }
+    }
 
     /**
      * pause playing
      */
-     public void setMediaPlayerPause(){
+    public void setMediaPlayerPause() {
         mediaPlayer.pause();
-     }
+    }
 
     /**
      * stop
      */
-     public void setMediaPlayerStop(){
+    public void setMediaPlayerStop() {
         mediaPlayer.stop();
-     }
+    }
 
     /**
      * @param listener MediaPlayer.OnCompletionListener
      */
-     public void setMediaPlayerPlayCompletionListener(MediaPlayer.OnCompletionListener listener){
-         mediaPlayer.setOnCompletionListener(listener);
-     }
+    public void setMediaPlayerPlayCompletionListener(MediaPlayer.OnCompletionListener listener) {
+        mediaPlayer.setOnCompletionListener(listener);
+    }
 
     /**
      * @return Status Boolean Playing
      */
-     public boolean getMediaPlayerIsPlaying(){
+    public boolean getMediaPlayerIsPlaying() {
         return mediaPlayer.isPlaying();
-     }
+    }
+
+    public int getMediaPlayerDuration() {
+        return mediaPlayer.getDuration();
+    }
+
+    public int getMediaPlayerPosition() {
+        return mediaPlayer.getCurrentPosition();
+    }
 }

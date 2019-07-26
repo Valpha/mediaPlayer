@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
      * 设置沉浸式状态栏
      */
     private void setFullScreenMode() {
-        getWindow().getDecorView().setSystemUiVisibility(
+        MainActivity.this.getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_FULLSCREEN |
                         View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
                         View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY

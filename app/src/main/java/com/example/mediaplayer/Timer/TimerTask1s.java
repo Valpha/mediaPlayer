@@ -24,5 +24,6 @@ public class TimerTask1s extends TimerTask {
         int position = MusicController.getCurrentPostrion();
         ViewManager.setSeekBarCurrentProgress(position);
         Log.d("Timer", "运行了一次，当前位置为"+position);
+        ViewManager.setTvLseekbar(String.valueOf(position/1000));
     }
 }

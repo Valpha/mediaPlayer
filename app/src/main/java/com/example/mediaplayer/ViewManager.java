@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.UiThread;
+
 import com.example.mediaplayer.Adapters.LyricAdapter;
 import com.example.mediaplayer.Fragments.PlayingFragment;
 import com.example.mediaplayer.Listeners.BtFavoriteOnClickListener;
@@ -43,7 +45,8 @@ public class ViewManager {
     private static ImageView ivCover;
     private static ImageView ivReflection;
     private static Animation cdAmination;
-
+    private static TextView tvRseekbar;
+    private static TextView tvLseekbar;
 
 
     public static ViewManager getInstance() {
@@ -71,11 +74,15 @@ public class ViewManager {
         tvArtist        = (TextView)    view.findViewById(R.id.tv_artist);
         tvComposer      = (TextView)    view.findViewById(R.id.tv_composer);
         tvWriter        = (TextView)    view.findViewById(R.id.tv_writer);
+        tvRseekbar      = (TextView)    view.findViewById(R.id.r_seekbar);
+        tvLseekbar      = (TextView)    view.findViewById(R.id.l_seekbar);
+        tvWriter        = (TextView)    view.findViewById(R.id.tv_writer);
         sbProgress      = (SeekBar)     view.findViewById(R.id.sb_progress);
         ivChangPian     = (ImageView)   view.findViewById(R.id.iv_changpian);
         ivCover         = (ImageView)   view.findViewById(R.id.iv_cover);
         ivReflection    = (ImageView)   view.findViewById(R.id.iv_reflection);
         ivSmallCover    = (ImageView)   view.findViewById(R.id.iv_smallcover);
+
         initCdAnimation();
     }
 
@@ -218,5 +225,15 @@ public class ViewManager {
 
     public static void setSeekBarMoveToStart() {
         sbProgress.setProgress(0);
+    }
+
+    public static void setTvLseekbar(final String time) {
+        PlayingFragment.getInstance().getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tvLseekbar.setText(time);
+            }
+        });
+
     }
 }

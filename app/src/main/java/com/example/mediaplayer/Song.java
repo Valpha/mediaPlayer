@@ -20,6 +20,15 @@ public class Song {
     private String ssrc;
     private String picpath;
     private Bitmap cover;
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
     private HashMap<String, String> lyricList = new HashMap<>(50);
     private boolean favorite;
 
@@ -132,4 +141,6 @@ public class Song {
     public boolean getFavorite() {
         return favorite;
     }
+
+
 }

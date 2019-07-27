@@ -28,10 +28,20 @@ public class PlayList {
         }
         Utils.writeCurrentOrder(currentOrder);
         ViewManager.setTvCount((currentOrder+1)+"/20");;
+        if(currentList.get(currentOrder).getFavorite())
+        {
+            ViewManager.setBtFavoriteTrue();
+        }
 
         Log.d("Utils", "写入songOrder"+currentOrder);
     }
 
+    public  static  void setCurrentSongFavorateTrue(int currentOrder){
+        currentList.get(currentOrder).setFavorite(true);
+    }
+    public  static  void setCurrentSongFavorateFalse(int currentOrder){
+        currentList.get(currentOrder).setFavorite(false);
+    }
     public static Song getCurrentSong() {
         return currentList.get(currentOrder);
     }
@@ -46,6 +56,11 @@ public class PlayList {
 
     public static Song getSongByOrder(int songOrder) {
         return currentList.get(songOrder);
+    }
+
+    public  static Boolean getSongFavorate(int songOrder){
+        return currentList.get(songOrder).getFavorite();
+
     }
 
 }

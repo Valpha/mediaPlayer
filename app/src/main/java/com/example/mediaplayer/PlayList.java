@@ -1,6 +1,7 @@
 package com.example.mediaplayer;
 
 import android.util.Log;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -8,8 +9,7 @@ public class PlayList {
     private static final PlayList ourInstance = new PlayList();
 
     public static List<Song> currentList;
-    public static int currentOrder = 0;
-
+    public static int currentOrder = -1;
     public static PlayList getInstance() {
         return ourInstance;
     }
@@ -27,6 +27,8 @@ public class PlayList {
             currentOrder = songOrder;
         }
         Utils.writeCurrentOrder(currentOrder);
+        ViewManager.setTvCount((currentOrder+1)+"/20");;
+
         Log.d("Utils", "写入songOrder"+currentOrder);
     }
 

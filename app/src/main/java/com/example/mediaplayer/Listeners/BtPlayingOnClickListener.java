@@ -29,6 +29,7 @@ public class BtPlayingOnClickListener implements View.OnClickListener {
         } else {
             ViewManager.setIvAnimationStart();
             MusicController.startPlaying();
+
             // TimerManager.startTimer();定时器在MusicController中使用了
         }
     }

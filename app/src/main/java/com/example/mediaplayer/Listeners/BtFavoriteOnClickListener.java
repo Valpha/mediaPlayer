@@ -8,6 +8,7 @@ public class BtFavoriteOnClickListener implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
+
     }
 
     /*{

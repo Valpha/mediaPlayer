@@ -79,6 +79,9 @@ public class ViewManager {
         initCdAnimation();
     }
 
+    public  static  void setTvCount(String count){
+        tvCount.setText(count);
+    }
     public static void setSeekBarProgressMax(int max) {
         sbProgress.setMax(max);
     }

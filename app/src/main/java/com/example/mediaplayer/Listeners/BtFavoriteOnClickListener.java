@@ -2,24 +2,27 @@ package com.example.mediaplayer.Listeners;
 
 import android.view.View;
 
+import com.example.mediaplayer.PlayList;
 import com.example.mediaplayer.Utils;
+import com.example.mediaplayer.ViewManager;
 
 public class BtFavoriteOnClickListener implements View.OnClickListener {
     @Override
     public void onClick(View view) {
-
+        int position = PlayList.getCurrentOrder();
+        Boolean favorate = PlayList.getSongFavorate(position);
+        if(favorate)
+        {
+            ViewManager.setBtFavoriteFalse();
+            PlayList.setCurrentSongFavorateFalse(position);
+        }
+        else
+        {
+            ViewManager.setBtFavoriteTrue();
+            PlayList.setCurrentSongFavorateTrue(position);
+        }
 
     }
 
-    /*{
-        if (i) {
-            ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.like2));
-            Toast.makeText(getActivity(), "已收藏", Toast.LENGTH_LONG).show();
-            i = false;
-        } else {
-            ((ImageButton) view).setImageDrawable(getResources().getDrawable(R.drawable.like1));
-            Toast.makeText(getActivity(), "已取消收藏", Toast.LENGTH_LONG).show();
-            i = true;
-        }
-    }*/
+
 }

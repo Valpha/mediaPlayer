@@ -5,6 +5,8 @@ import android.util.Log;
 import com.example.mediaplayer.MusicController;
 import com.example.mediaplayer.ViewManager;
 
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 import java.util.TimerTask;
 
 public class TimerTask1s extends TimerTask {
@@ -24,6 +26,11 @@ public class TimerTask1s extends TimerTask {
         int position = MusicController.getCurrentPostrion();
         ViewManager.setSeekBarCurrentProgress(position);
         Log.d("Timer", "运行了一次，当前位置为"+position);
-        ViewManager.setTvLseekbar(String.valueOf(position/1000));
+
+        SimpleDateFormat formatter = new SimpleDateFormat("mm:ss");
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT+00:00"));
+        String hms = formatter.format(position);
+
+        ViewManager.setTvLseekbar(hms);
     }
 }

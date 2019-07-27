@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.mediaplayer.AudioPlayer;
 import com.example.mediaplayer.Fragments.PlayingFragment;
 import com.example.mediaplayer.MusicController;
 import com.example.mediaplayer.PlayList;
@@ -16,6 +17,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class BtPlayingOnClickListener implements View.OnClickListener {
+    AudioPlayer audioPlayer = AudioPlayer.getInstance();
     @Override
     public void onClick(View view) {
 
@@ -32,5 +34,9 @@ public class BtPlayingOnClickListener implements View.OnClickListener {
 
             // TimerManager.startTimer();定时器在MusicController中使用了
         }
+
+
+
+
     }
 }

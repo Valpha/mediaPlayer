@@ -12,6 +12,13 @@ public class MySeekBarSeekToListener implements SeekBar.OnSeekBarChangeListener 
             AudioPlayer audioPlayer = AudioPlayer.getInstance();
             audioPlayer.setMediaPlayerSeekTo(i);
             Log.d("MusicController", "当前拖拽进度为"+i);
+
+            //setMediaPlayerSeekTo(int progress) {
+//
+//            if(b){
+//                audioPlayer.setMediaPlayerSeekTo(i);
+//            }
+
         }
     }
 

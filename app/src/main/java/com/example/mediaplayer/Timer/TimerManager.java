@@ -20,32 +20,21 @@ public class TimerManager {
 
     private TimerManager() {
         mTimer = new Timer();
-        mTimer10ms = new TimerTask() {
-            @Override
-            public void run() {
-                //    TODO:10msTimerToDo
-            }
-        };
-        mTimer1s = new TimerTask() {
-            @Override
-            public void run() {
-                //    TODO:1sTimerToDo
-                int position = MusicController.getCurrentPostrion();
-                ViewManager.setSeekBarCurrentProgress(position);
-            }
-        };
     }
 
     public static void startTimer10ms() {
-        mTimer.schedule(mTimer10ms, 0, 10);
+        TimerTask timerTask10Ms = TimerTask10ms.getTimerTask();
+        mTimer.schedule(timerTask10Ms, 0, 10);
     }
 
     public static void startTimer1s() {
-        mTimer.schedule(mTimer1s, 0, 1000);
+        TimerTask timerTask1s = TimerTask1s.getTimerTask();
+        mTimer.schedule(timerTask1s, 0, 1000);
     }
 
     public static void stopTimer() {
         mTimer.cancel();
-        mTimer.purge();
+        mTimer = new Timer();
+        // mTimer.purge();
     }
 }

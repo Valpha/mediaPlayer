@@ -17,6 +17,7 @@ public class BtPrevOnTouchListener implements View.OnTouchListener {
             case MotionEvent.ACTION_DOWN:
                 ViewManager.setBtPrevDown();
                 return true;
+
             case MotionEvent.ACTION_UP:
                 int order = PlayList.getCurrentOrder();
                 PlayList.setSongOrder(order - 1);
@@ -25,7 +26,7 @@ public class BtPrevOnTouchListener implements View.OnTouchListener {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                // MusicController.startPlaying();
+                 MusicController.startPlaying();
                 ViewManager.setBtPrevUp();
                 return true;
             default:

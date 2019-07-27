@@ -53,7 +53,7 @@ public class MusicController {
         ViewManager.setBtPlayingImageToPause();
         ViewManager.setIvAnimationStart();
 
-        // TimerManager.startTimer1s();
+        TimerManager.startTimer1s();
     }
 
     public static void stopPlaying() {

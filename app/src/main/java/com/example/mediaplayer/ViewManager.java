@@ -188,6 +188,7 @@ public class ViewManager {
     public static void setBtFavoriteTrue() {
         btFavorite.setImageDrawable(PlayingFragment.getInstance().getResources().getDrawable(R.drawable.like2));
     }
+
     public static void setBtFavoriteFalse() {
         btFavorite.setImageDrawable(PlayingFragment.getInstance().getResources().getDrawable(R.drawable.like1));
     }
